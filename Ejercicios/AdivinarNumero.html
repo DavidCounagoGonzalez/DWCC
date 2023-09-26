@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>Indica un número del 1 al 20: <br /></p>
+    <input id="respuesta" type="number" placeholder="Indica el número"></input>
+    <button type="button" onclick="comprueba()">Comprobar</button>
+
+    <p id="solucion">Solucion</p>
+    <script>
+        //Adivinar el número generado aleatoriamente
+        function comprueba(){
+            //genera el numero aleatorio int en un rango de 20
+            var numero = Integer.parseInt(Math.random()*20);
+
+            //Recojo  los elementos necesarios de las etiquetas
+            solucion = document.getElementById("solucion");
+            respuesta = document.getElementById("respuesta").value;
+            solucion.innerHTML = respuesta;
+            
+            //Try por si se produce un error
+            try{
+                //Comprobación del número aleatorio
+                if(numero == respuesta){
+                    solucion.innerHTML = "Has acertado el número oculto era " + numero;
+                }else{
+                    solucion.innerHTML = "Has fallado el número oculto era " + numero;
+                }
+
+
+            }catch(er){
+                solucion.innerHTML = "Error"+ er;
+            }
+        }
+
+        
+        
+    </script>
+</body>
+</html>

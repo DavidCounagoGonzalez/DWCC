@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        var x = 10;
+        var y = "20";
+        var z = "30";
+        var res
+
+        res = x + y;
+        document.write(res);
+
+        res = y + z;
+        document.write("<br />" + res);
+
+        res = y - z;
+        document.write("<br />" + res);
+
+        res = y / "hola";
+        document.write("<br />" + res);
+
+        res = x / 0;
+        document.write("<br />" + res);
+
+        var entero = 7;
+        var real = 7.96365;
+
+        document.write(entero.toString(2));
+        document.write("<br />" + real.toExponential(3));
+        document.write("<br />" + real.toFixed(4));
+        document.write("<br />" + real.toPrecision(4));
+        document.write("<br />" + Number("true"));
+        document.write("<br />" + Number(" 154 "));
+        document.write("<br />" + parseInt("22.36"));
+        document.write("<br />" + parseFloat("22.36"));
+    </script>
+</body>
+</html>

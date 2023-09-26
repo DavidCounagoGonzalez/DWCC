@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        //area cuadrado
+        const ladocuad = 4;
+        (function(lado){
+            document.write("Area cuadrado = " + lado**2)
+        })(ladocuad);
+
+        //area triángulo
+        const altura = 5, base = 3;
+        var areaTri = function(a, b){
+            return a*b/2
+        }(altura,base);
+        document.write("<br /> Área triángulo = " + areaTri);
+
+        //area paralepípedo
+        const ladoA = 10, ladoB = 7, ladoC = 2;
+        (function(a, b, c){
+            document.write("<br /> Área paralepípedo = " + (2*((a*b)+(a*c)+(c*b))));
+        })(ladoA, ladoB, ladoC);
+
+        //area circulo
+        const radio = 6, pi = 3.14;
+        var areaCirc = function(r, p){
+            return p*(r**2)
+        }(radio, pi);
+        document.write("<br /> Área del círculo = " + areaCirc);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>Calcule el área de <br> 1. Cuadrado <br> 2.Triángulo <br>
+    3. Paralepípedo <br> 4.Círculo</p>
+    <br>
+    <input id="opcion" type="number" placeholder="Indique el número de la opción">
+    <button type="button" onclick="calcAreas()">Calcular</button>
+
+    <script>
+        function calcAreas(){
+            var opcion;
+            opcion = document.getElementById("opcion").value;
+            
+            switch(opcion){
+                case 1:
+                    const ladocuad = 3;
+                    areaT = 3**2;
+                    document.write("<br /> El área del cuadrado es: " + areaT);
+                    break;
+
+                case 2:
+                    const base = 4, altura = 7;
+                    areaT = base*altura/2;
+                    document.write("<br /> El área del triángulo es: " + areaT);
+                    break;
+
+                case 3:
+                    const ladA = 10, ladB = 4, ladC = 7;
+                    areaAB = ladA * ladB;
+                    areaAC = ladA * ladC;
+                    areaBC = ladB * ladC;
+                    areaT = 2*(areaAB + areaAC + areaBC);
+                    document.write("<br /> El área del paralepípedo es: " + areaT)
+                    break;
+
+                case 4:
+                    const radio = 8, pi = MAth.pi;
+                    areaT = pi*radio**2;
+                    document.write("<br /> El área del círculo es: " + areaT);
+                    break;
+
+                default:
+                    document.write("Esto no es una opción.")
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        //asignación de la función a una variable
+        let f = function(a, b){
+            return a + b
+        }
+        document.write(f(3,1));
+
+        //ejecución de una función sin ser invocada
+        (function() {
+            a=5; 
+            document.write("<br />" + a**2) 
+        }) ();
+
+        //funciones anónimas con parámetros
+        x = 5;
+        y = 10;
+        //encapsulación de variables
+        z = (function (x, y) {   return x + y} (1, 2));
+
+        document.write("<br />" + z);
+
+        document.write("<br />" + eval(x + y));
+
+        var cadena1 = "<br />Hola ";
+        var cadena2 = "y adios";
+        (function (str1, str2) {
+            document.write(str1 + str2);
+        }) (cadena1, cadena2);
+
+        //Funciones Flecha
+        hola = () => {return "hola";}
+        document.write("<br />" + hola());
+
+        hola = () => "hola2";
+        document.write("<br />" + hola());
+
+        //Flecha con parámetros
+        var nombre = "Pepe";
+        saludar = saludo => saludo + nombre;
+        document.write("<br />" + saludar("Hola"));
+
+        sumar = (x, y) => x + y;
+        document.write("<br />" + sumar(6,10));
+
+        multiplicar = (x, y) => {
+            document.write("<br /> Resultado: ");
+            return x * y;
+        }
+        document.write(multiplicar(2,6));
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function cambiarTexto(){
+            //document.getElementById("prueba").innerHTML = "Otro Texto";
+            //document.getElementById("prueba").style.fontSize = "10px";
+            elemP = document.getElementById("prueba");
+            if(elemP.innerHTML.match("Original")){
+            elemP.innerHTML = "Otro Texto";
+            elemP.style.fontSize = "10px";
+            }
+            else{
+                elemP.innerHTML = "Texto Original";
+                elemP.style.fontSize ="220px"
+            }
+        }
+        function cambiaImagen() {
+            var imagen =document.getElementById("myImg");
+            
+            if(imagen.src.match("green")){
+                imagen.src ="http://myfpschool.com/wp-content/uploads/2016/06/myblack.jpeg"
+            }
+            else{
+                imagen.src = "http://myfpschool.com/wp-content/uploads/2016/06/mygreen.jpeg"
+            }
+        }
+    </script>
+</head>
+<body>
+    <p id="prueba" style="font-size: 220px;">Texto Original</p>
+    <button type="button" onclick="cambiarTexto()">Cambia el texto</button>
+    <br />
+    <script>document.write("<h2>Haciendo pruebas.....</h2>");</script>
+    <script>window.alert("Hola");</script>
+    <script>window.print();</script>
+
+    <!-- <img id="myImg" onclick="cambiaImagen()"
+    src="http://myfpschool.com/wp-content/uploads/2016/06/myblack.jpeg"
+    width="75%" height="125%"> -->
+
+
+   <script>
+        /*function cambiarTexto(){
+            //document.getElementById("prueba").innerHTML = "Otro Texto";
+            
+            elemP = document.getElementById("prueba");
+            elemP.innerHTML = "Otro Texto";
+        }*/
+    </script>
+
+</body>
+</html>

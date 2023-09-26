@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+
+        for (i = 0; i < 5; i++){
+            if (i == 2){ break; }
+            document.write(i + " ");
+        }
+        document.write("<br />");
+
+        for (i = 0; i < 5; i++){
+            if(i == 2){ continue; }
+            document.write(i + " ");
+        }
+        document.write("<br />");
+
+        var persona = {n: "pepe", a: "perez", e: 25};
+        for (i in persona){
+            document.write(persona[i] + " ");
+        }
+        document.write("<br />")
+
+        var coches = ["seat", "audi", "bmw"];
+        for (marca of coches){
+            document.write(marca + " ");
+        }
+        document.write("<br />")
+
+        var cadena = "esto es una cadena";
+        for (c of cadena){
+            document.write(c + " ");
+        }
+        document.write("<br />")
+
+        var x = 0;
+        while (x < 5){
+            document.write(x++, " ");
+        }
+        document.write("<br />")
+
+        x = 0;
+        do{
+            if (x > 5){ break; }
+
+            document.write(++x + " ");
+        }while(true);
+    </script>
+</body>
+</html>
