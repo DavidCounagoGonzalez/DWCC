@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html>
+<body>
+    <p>Indica un número: <br /></p>
+    <input id="respuesta" type="number" placeholder="Indica el número"></input>
+    <button type="button" onclick="comprueba()">Comprobar</button>
+
+    <p id="solucion">Solucion</p>
+    <script>
+        //Adivinar el número generado aleatoriamente
+        function comprueba(){
+            
+            respuesta = document.getElementById("respuesta").value;
+            //Comprobamos que el número del usuario esté en rango
+            if((respuesta > 0) && (respuesta <= 15)){  
+                generaNum(respuesta);
+            }else{
+                window.alert("Mete un número que esté en rango")
+            }
+            
+        }
+        function generaNum(resp){
+            solucion = document.getElementById("solucion");
+            var contador = 0;
+            do{
+            //genera el numero aleatorio int en un rango de 15
+            var numero = (Math.random()*15)+1;
+            numero = Math.round(numero);
+            //cuando no se de la igualdad suma una ronda en caso contrario mostrará el número
+            if (numero != resp){
+                contador++;
+            }else{
+                solucion.innerHTML = "Ha tardado: " + contador + " rondas";
+            }
+            // El bucle se produce hasta que tu numero y e aleatorio se an iguales.
+            }while(numero != resp);
+
+        }
+ 
+    </script>
+</body>
+</html>
