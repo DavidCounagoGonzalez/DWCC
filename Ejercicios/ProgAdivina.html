@@ -9,13 +9,13 @@
     <script>
         //Comprueba que el número esté en rango
         function comprueba(){
-            limInf = 0;
+            limInf = 1;
             limSup = 15;
             
             respuesta = document.getElementById("respuesta").value;
 
             //Comprobamos que el número del usuario esté en rango
-            if((respuesta > limInf) && (respuesta <= limSup)){  
+            if((respuesta >= limInf) && (respuesta <= limSup)){  
                 generaNum(respuesta);
             }else{
                 window.alert("Mete un número que esté en rango")
