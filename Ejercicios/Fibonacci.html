@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <script>
+        function fibonacci(num){
+            if(num <= 1){
+                return num;
+            }else{
+
+            return fibonacci(num-1) + fibonacci(num-2);
+
+            }
+            
+        }
+
+        function muestra(){
+            for(i = 0; i <= 10; i++){
+                res = fibonacci(i);
+                document.write(res + "<br />");
+            }
+        }
+
+        muestra();
+    </script>
+
+</body>
+</html>

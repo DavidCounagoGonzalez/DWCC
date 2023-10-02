@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+
+        var colores = ["rojo", "azul", "verde"];
+        var vector = ["hola", 343, 7.656, true];
+
+        document.write(colores[0]);
+        document.write("<br />" + colores[colores.length-1]);
+        document.write("<br />" + vector + "<br />");
+
+        document.write("<ul>");
+            for(i = 0; i< vector.length; i++){
+                document.write("<li>" + vector[i] + "</li>");
+            }
+        document.write("</ul>");
+        
+        colores.forEach(valor => document.write(valor.toUpperCase()+ " "));
+
+        vector.push("otro elemento");
+        document.write("<br />" + vector);
+        vector.pop();
+        document.write("<br />" + vector);
+
+        vector.unshift("otro elemento");
+        document.write("<br />" + vector);
+
+        vector.shift();
+        document.write("<br />" + vector);
+
+        delete vector[2];
+        document.write("<br />" + vector);
+        document.write("<br />" + vector.length);
+
+        colores.splice(2, 0, "amarillo", "naranja", "violeta");
+        document.write("<br />" + colores);
+        colores.splice(2,1,"gris");
+        document.write("<br />" + colores);
+        colores.splice(2, 1);
+        document.write("<br />" + colores);
+
+        var union = colores.concat(vector);
+        document.write("<br />" + union);
+
+        var trozo = union.slice(1,7);
+        document.write("<br />" + trozo);
+
+
+    </script>
+</body>
+</html>

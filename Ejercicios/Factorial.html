@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <input type="text" id="numero"></br>
+    </br>
+    <button onclick="muestra()">Calcular</button>
+    <script>
+        function calculaFactorial(num){
+            
+            if (num <= 1){
+                return 1;
+            }
+
+            return num * calculaFactorial(num-1);
+
+        }
+
+        function muestra(){
+           document.write(calculaFactorial((document.getElementById("numero").value)));
+        }
+
+    </script>
+</body>
+</html>
