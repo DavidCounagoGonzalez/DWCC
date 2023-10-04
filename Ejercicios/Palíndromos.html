@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>Escribe una palabra y te diré si es palíndromo.</p>
+    <input id="cadena" type="text" placeholder="Escribe aquí">
+    <button onclick="analizaP()" type="button">Analizar</button>
+    <p id="resultado"></p>
+
+    <script>
+
+        function analizaP(){
+        const letras = document.getElementById("cadena").value;
+
+            console.log(letras);
+
+            regular = true;
+
+            for(i = 0; i< (letras.length/2); i++){ //podemos reducir el bucle a la mitad
+                contra = letras.length - i - 1; // guardamos el valor homónimo en la cadena
+                console.log(contra);
+
+                if (letras[i] != letras[contra]){
+                    regular = false;
+                }
+            }
+
+            if(regular = false){
+                document.getElementById("resultado").innerHTML = "No es el palíndromo";
+            }else{
+                document.getElementById("resultado").innerHTML = "Es un palíndromo";
+            }
+
+        }
+
+        //Solución de marcos con añadido de or y etiqueta bool
+        /*
+        function analizaP(){
+            const letras = document.getElementById("cadena").value;
+            let izquierda = 0;
+            let derecha = string-length - 1;
+
+            regular = true;
+
+            while ((izquierda < derecha) // || regular = false){
+                if (string[iquierda] != string[derecha]){
+                    return regular = false;
+                }
+                izquierda += 1;
+                derecha -= 1;
+            }
+            return regular = true;
+        }
+        */
+
+    </script>
+</body>
+</html>
+
+

@@ -35,8 +35,9 @@
 
         colores.splice(2, 0, "amarillo", "naranja", "violeta");
         document.write("<br />" + colores);
-        colores.splice(2,1,"gris");
+        var removed = colores.splice(2,1,"gris");
         document.write("<br />" + colores);
+        document.write("<br />" + removed);
         colores.splice(2, 1);
         document.write("<br />" + colores);
 

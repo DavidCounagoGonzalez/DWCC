@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>Escribe números separados por ","</p>
+    <input id="numeros" type="text" placeholder="Ecriba los números">
+    <button onclick="mostrar()" type="button">Analiza</button>
+    <p id="listado"></p>
+    <p id="suma"></p>
+
+    <script>
+        function mostrar(){
+            const nums = document.getElementById("numeros").value.split(",");
+            
+            let lista = "";
+
+            sumaPar = 0;
+
+            prodImp = 1;
+
+            total = 0;
+
+            nums.forEach(valor => {
+                lista = lista + valor + " "; 
+
+                (valor%2 == 0) ? sumaPar += parseInt(valor) : prodImp *= parseInt(valor);
+
+                total += parseInt(valor); 
+            });
+
+            
+            
+            
+            document.getElementById("listado").innerHTML = "La lista de números es: " + lista
+            + "<br> Suma de pares: " + sumaPar + "<br> El producto de los impares es: " + prodImp
+            + "<br> Media de la lista: " + total/nums.length + "<br> El mayor de la lista es: " + Math.max.apply(null, nums)
+            + "<br> El menor de la lista es: " + Math.min.apply(null, nums); //Math.min/max busca directamente el mínimo o máximos del array que pasamos por parámetro
+   
+        }
+    </script>
+</body>
+</html>
