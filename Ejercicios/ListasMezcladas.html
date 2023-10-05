@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>Primera Lista: </p>
+
+    <input id="lista1" type="text">
+    <select id="tamano1">
+        <option value="valor1">2</option>
+        <option value="valor2">3</option>
+        <option value="valor3">4</option>
+    </select>
+
+    <p>Segunda Lista: </p>
+    <input id="lista2" onclick="text">
+    <select name="tamano2">
+        <option value="valor1">6</option>
+        <option value="valor2">7</option>
+        <option value="valor3">8</option>
+    </select>
+    <br>
+    <p id="resultado"></p>
+    <br><br>
+    <button type="button" onclick="Mezcla()">Mezcla</button>
+    <button type="button" onclick="reinicia()">Reinicia</button>
+
+    <script>
+
+        function Mezcla(){
+            let lista1 = document.getElementById("lista1").value;
+            let lista2 = document.getElementById("lista1").value;
+            let tamano1 = document.getElementById("tamano1").value;
+            console.log(tamano1);
+
+
+
+        }
+
+
+
+        function reinicia(){
+            console.log("aquí");
+            document.getElementById("lista1").value = " ";
+            document.getElementById("lista2").value = " ";
+            document.getElementById("resultado").value = "";
+        }
+
+
+    </script>
+
+
+</body>
+</html>
