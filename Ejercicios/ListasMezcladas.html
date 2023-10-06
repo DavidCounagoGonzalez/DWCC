@@ -5,17 +5,17 @@
 
     <input id="lista1" type="text">
     <select id="tamano1">
-        <option value="valor1">2</option>
-        <option value="valor2">3</option>
-        <option value="valor3">4</option>
+        <option value="2">2</option>
+        <option value="7">7</option>
+        <option value="4">4</option>
     </select>
 
     <p>Segunda Lista: </p>
-    <input id="lista2" onclick="text">
-    <select name="tamano2">
-        <option value="valor1">6</option>
-        <option value="valor2">7</option>
-        <option value="valor3">8</option>
+    <input id="lista2" type="text">
+    <select id="tamano2">
+        <option value="6">6</option>
+        <option value="3">3</option>
+        <option value="8">8</option>
     </select>
     <br>
     <p id="resultado"></p>
@@ -26,22 +26,61 @@
     <script>
 
         function Mezcla(){
-            let lista1 = document.getElementById("lista1").value;
-            let lista2 = document.getElementById("lista1").value;
-            let tamano1 = document.getElementById("tamano1").value;
-            console.log(tamano1);
+            let lista1 = document.getElementById("lista1").value.split(","); //recogemos y spliteamos las listas de números introducidos en los input
+            let lista2 = document.getElementById("lista2").value.split(",");
+            let tamano1 = document.getElementById("tamano1").value; // guardamos en variables el tamaño escogigo
+            let tamano2 = document.getElementById("tamano2").value;
+            console.log(lista1.length + ", " + lista2.length);
 
+            if(lista1.length == tamano1 && lista2.length == tamano2){ // comrpobamos que las listas coincidan con el tamaño indicado.
+                var final = [];
+
+                if(tamano1 < tamano2){ //comprobamos cual de las dos es menor.
+                    for(i = 0; i < tamano1; i++){ // realizamos un primer for con respecto a la menor.
+
+                        final.splice(final.length, 0, lista1[i]); //utilizamos el splice para añadir el valor de cada lista al final de la lista final
+                        final.splice(final.length, 0, lista2[i]);
+
+                        // console.log(lista1[i]);
+                        // console.log(lista2[i]);
+                    }
+                    for(j = (tamano1); j < tamano2; j++){ // acabamos de sacar los datos de la otra lista.
+                        final.splice(final.length, 0, lista2[j]);
+
+                        // console.log(lista2[j]);
+                    }
+                    document.getElementById("resultado").innerHTML = final;
+
+                }else{
+                    for(n = 0; n < tamano2; n++){ // Reptimos los fors pero intercambiando los tamaños.
+
+                        final.splice(final.length, 0, lista1[n]);
+                        final.splice(final.length, 0, lista2[n]);
+
+                        // console.log(lista1[n]);
+                        // console.log(lista2[n]);
+                    }
+                    for(m = tamano2; m < tamano1; m++){
+                        final.splice(final.length, 0, lista1[m]);
+
+                        // console.log(lista1[m]);
+                    }
+                    document.getElementById("resultado").innerHTML = final;
+                }
+
+            }else{
+                window.alert("El tamaño de una de las listas no coincide");
+            }
 
 
         }
 
 
 
-        function reinicia(){
-            console.log("aquí");
+        function reinicia(){ // reiniciamos los inputs y el parrafo de resultado igualándolos a " "
             document.getElementById("lista1").value = " ";
             document.getElementById("lista2").value = " ";
-            document.getElementById("resultado").value = "";
+            document.getElementById("resultado").innerHTML = " ";
         }
 
 
