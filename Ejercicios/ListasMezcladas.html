@@ -13,19 +13,19 @@
     <p>Segunda Lista: </p>
     <input id="lista2" type="text">
     <select id="tamano2">
-        <option value="6">6</option>
+        <option value="5">5</option>
         <option value="3">3</option>
         <option value="8">8</option>
     </select>
     <br>
     <p id="resultado"></p>
     <br><br>
-    <button type="button" onclick="Mezcla()">Mezcla</button>
+    <button type="button" onclick="mezcla()">Mezcla</button>
     <button type="button" onclick="reinicia()">Reinicia</button>
 
     <script>
 
-        function Mezcla(){
+        function mezcla(){
             let lista1 = document.getElementById("lista1").value.split(","); //recogemos y spliteamos las listas de números introducidos en los input
             let lista2 = document.getElementById("lista2").value.split(",");
             let tamano1 = document.getElementById("tamano1").value; // guardamos en variables el tamaño escogigo
@@ -38,18 +38,21 @@
                 if(tamano1 < tamano2){ //comprobamos cual de las dos es menor.
                     for(i = 0; i < tamano1; i++){ // realizamos un primer for con respecto a la menor.
 
-                        final.splice(final.length, 0, lista1[i]); //utilizamos el splice para añadir el valor de cada lista al final de la lista final
-                        final.splice(final.length, 0, lista2[i]);
+                        //final.splice(final.length, 0, lista1[i]); //utilizamos el splice para añadir el valor de cada lista al final de la lista final
+                        //final.splice(final.length, 0, lista2[i]);
+                        
+                        final.push(lista1[i]);  // También se puede usar push
+                        final.push(lista2[i]);
 
-                        // console.log(lista1[i]);
-                        // console.log(lista2[i]);
+
                     }
                     for(j = (tamano1); j < tamano2; j++){ // acabamos de sacar los datos de la otra lista.
-                        final.splice(final.length, 0, lista2[j]);
+                        //final.splice(final.length, 0, lista2[j]);
 
-                        // console.log(lista2[j]);
+                        final.push(lista2[j]);
+
                     }
-                    document.getElementById("resultado").innerHTML = final;
+                    document.getElementById("resultado").innerHTML = final.join(", ");
 
                 }else{
                     for(n = 0; n < tamano2; n++){ // Reptimos los fors pero intercambiando los tamaños.
@@ -57,15 +60,15 @@
                         final.splice(final.length, 0, lista1[n]);
                         final.splice(final.length, 0, lista2[n]);
 
-                        // console.log(lista1[n]);
-                        // console.log(lista2[n]);
+                        // final.push(lista1[i]);  // También se puede usar push
+                        // final.push(lista2[i]);
                     }
                     for(m = tamano2; m < tamano1; m++){
                         final.splice(final.length, 0, lista1[m]);
 
-                        // console.log(lista1[m]);
+                        // final.push(lista1[m]);
                     }
-                    document.getElementById("resultado").innerHTML = final;
+                    document.getElementById("resultado").innerHTML = final.join(", ");
                 }
 
             }else{
