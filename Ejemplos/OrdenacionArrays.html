@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        var numeros = [4, 40, 2, 220, 1, 10];
+
+        /* Sort pasa dos valores a la función de comparación y
+        ordena los valores según el valor que le venga devuelto
+
+        Si la función devuelve un positivo, b va antes que a, 
+        si devuelve un negativo a va antes que b */
+        
+        document.write("<br />" + numeros.sort(
+                                function(a,b){
+                                    return a-b
+                                }
+        ));
+
+        document.write("<br />" + numeros.sort(ordena));
+
+        function ordena(a, b){
+            return a - b; 
+        }
+
+        document.write("<br />" + numeros.sort((a ,b) => a-b));
+       
+    </script>
+</body>
+</html>

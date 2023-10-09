@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+
+        var numeros = [45, 4, 9, 16, 25];
+
+        function mostrarVector(valor, indice, vector) {
+            document.write("Pos " + indice + " = " + valor + "<br />");
+
+        }
+        numeros.forEach(mostrarVector);
+
+        function porDos(valor){
+            return valor *2;
+        }
+        var doble = numeros.map(porDos);
+        document.write(doble);
+
+        function filtrar(valor){
+            return valor > 10;
+        }
+        var filtro = numeros.filter(filtrar);
+        document.write("<br />" + filtro);
+
+        function sumar(total, valor, indice, vector){
+            return total + valor;
+        }
+        var sumatorio = numeros.reduce(sumar);
+        document.write("<br />" + sumatorio);
+
+        function comprobarTodos(valor){
+            return valor > 10;
+        }
+        document.write("<br />" + numeros.every(comprobarTodos));
+
+        function comprobarAlgunos(valor){
+            return valor > 10;
+        }
+        document.write("<br />" + numeros.some(comprobarAlgunos));
+
+        function encontrar(valor){
+            return valor == 9;
+        }
+        document.write("<br />" + numeros.find(encontrar) + 
+        " pos = " + numeros.findIndex(encontrar));
+    </script>
+</body>
+</html>
