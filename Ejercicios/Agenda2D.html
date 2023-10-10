@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form>
+        <input type="text" id="nombre">
+
+        <input type="text" id="edad">
+
+        <input type="text" id="telf">
+
+        <button type="Guardar" name="Guardar" onclick="Guardar">Guardar</button>
+   
+        <p id="resultado"></p>
+    </form>
+
+
+    <script>
+        function Guardar(){
+            
+            var agenda = new Array();
+            var datos = new Array(3);
+
+            nombre = document.getElementById("nombre").value;
+            edad = document.getElementById("edad").value;
+            telf = document.getElementById("telf").value;
+            
+            datos.push(nombre);
+            datos.push(edad);
+            datos.push(telf);
+
+            agenda.push(datos);
+
+
+        }
+
+    </script>
+</body>
+</html>
