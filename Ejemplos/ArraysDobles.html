@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        //array de 4x4
+        var matriz = new Array(4);
+        for (i = 0; i< matriz.length; i++){
+            matriz[i] = new Array(4);
+        }
+
+        //inserción de valores
+        for (i = 0; i < matriz.length; i++){
+            for(j = 0; j < matriz[i].length; j++){
+                matriz[i][j] = Math.ceil(Math.random() * 9);
+            }
+        }
+
+        // mostrar valores
+        for(i = 0;i < matriz.length; i++){
+            for(j = 0; j< matriz[i].length; j++){
+                document.write(matriz[i][j] + " ");
+            }
+            document.write("<br />");
+        }
+    </script>
+</body>
+</html>
