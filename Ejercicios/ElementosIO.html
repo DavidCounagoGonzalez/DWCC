@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <label for="ejemplo">Ejemplo: </label>
+    <input type="text" id="ejemplo"> 
+    <!-- La  etiqueta input puede variar su tipo de contenido
+    con el cuál puede variar su forma de asiganción de datos,
+    en el caso de text permite escribir cualquier caracter -->
+    <br>
+    <button type="button" name="imprime" onclick="imprimeEj()">Imprime</button>
+    <p id="impresion"></p>
+
+    <script>
+        function imprimeEj(){
+            //Recogemos y guardamos la etiqueta input mediante su id
+            contenido = document.getElementById("ejemplo");
+            
+            //Sobreescribimos el párrafo pasandole el .value de la variable que contiene al input.
+            document.getElementById("impresion").innerHTML = contenido.value;
+        }
+    </script>
+    <form id="formOpciones">
+        <fieldset>
+            <legend>Selector de opciones</legend>
+
+            <!--Los input de tipo radio crean un botón circular 
+            en este caso se le ha asociado una label, para crear una lista
+            de selección todos deben compartir el mismo nombre y presentar 
+            un id distinto junto a un value que será lo que se recoja.
+            En el caso de que queramos que esté preseleccionado añadiremos checked-->
+                <input type="radio" id="op1" name="opciones"
+                value="op1" checked>
+                <label for="op1">Opción 1</label><br>
+
+                <input type="radio" id="op2" name="opciones"
+                value="op2">
+                <label for="op2">Opción 2</label><br>
+
+                <input type="radio" id="op3" name="opciones"
+                value="op3">
+                <label for="op3">Opción 3</label>
+        </fieldset>
+
+        <button type="button" name="showOp" onclick="muestraOp()">Mostrar</button>
+    </form>
+    <p id="selectedOp"></p>
+
+    <script>
+        function muestraOp(){
+            //Guardamos el agrupamiento de radioButtons en una variable
+            var seleccionado = document.getElementsByName("opciones");
+            var opcion;
+            
+            //Recorremos todos los radioButtons
+            for(i = 0; i < seleccionado.length; i++){
+                //En caso de que esté seleccionado guardamos su valor en una variable.
+                if(seleccionado[i].checked = true ){
+                    opcion = seleccionado[i].value;
+                }
+            }
+            //Imprimimos en <p></p> el contenido de opcion
+            document.getElementById("selectedOp").innerHTML = opcion;
+            
+        }
+    </script>
+
+
+    <form id="f1">
+        <fieldset>
+            <legend>CheckBoxes</legend>
+
+            <input type="checkbox" name="ch1" 
+            value="Check1" checked>
+            <label for="ch1">Checkbox 1</label><br>
+
+            <input type="checkbox" name="ch2"
+            value="Check2">
+            <label for="ch2">Checkbox 2</label><br>
+
+            <input type="checkbox" name="ch3"
+            value="Check3" checked>
+            <label for="ch3">Checkbox 3</label><br>
+
+            <button type="button" name="listarbt" onclick="listar()">Listar</button>
+
+        </fieldset>
+
+        <p id="Mostrar"></p>
+
+        <script>
+            function listar(){
+                const f1 = document.getElementById("f1");
+                var seleccionados = new Array();
+
+                for (let i=0; i < f1.elements.length; i++) {
+                    if(f1.elements[i].type === "checkbox") {
+                        if(f1.elements[i].checked){
+                            seleccionados.push(f1.elements[i].value);
+                        }
+                    }
+                }
+
+                document.getElementById("Mostrar").innerHTML = seleccionados;
+            }
+        </script>
+
+    </form>
+
+</body>
+</html>
