@@ -106,5 +106,38 @@
 
     </form>
 
+    <form id="f2">
+        <label for="contArea">A contar</label><br>
+        <textarea id="contArea" name="contArea" rows="10" cols="33"
+        placeholder="Esribe aquí lo que quieras"></textarea><br>
+        
+        <button type="button" name="actCuenta" onclick="cuenta()">Cuenta</button>
+        <p id="resultado"></p>
+
+    
+        <script>
+            function cuenta(){
+                const $texto = document.getElementById("contArea").value;
+
+                document.getElementById('resultado').innerHTML ="Tu texto tiene " + $texto.length + " caracteres.";
+                
+            }
+        </script>
+    </form>
+
+    <form id="f3">
+        <label for="fecha">Rango: </label>
+        <input type="range" id="rango" name="rango" value="100"/>
+
+        <p id ="valorBarra"></p>
+        <script>
+            valor = document.getElementById("valorbarra");
+            barra = document.getElementById("rango");
+            barra.addEventListener("input", (event) => {
+                valor.textContent = event.target.value;
+            });
+        </script>
+    </form>
+
 </body>
 </html>
