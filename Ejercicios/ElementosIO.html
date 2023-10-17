@@ -131,10 +131,10 @@
 
         <p id ="valorBarra"></p>
         <script>
-            valor = document.getElementById("valorbarra");
+            valor = document.getElementById("valorBarra");
             barra = document.getElementById("rango");
             barra.addEventListener("input", (event) => {
-                valor.textContent = event.target.value;
+                valor.innerHTML = barra.value;
             });
         </script>
     </form>
