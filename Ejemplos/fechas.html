@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+
+        var d = new Date();
+        document.write(d.getTime());
+
+        document.write("<br />" + d.getFullYear());
+        document.write("<br />" + d.getMonth());
+        document.write("<br />" + d.getMinutes());
+
+        d.setFullYear(2030);
+        document.write("<br />" + d.getFullYear() + "<br />");
+
+        const date = new Date();
+        const [month, day, year] = [
+            date.getMonth(),
+            date.getDate(),
+            date.getFullYear()
+        ];
+
+        document.write([month + "/" + day + "/" + year]);
+
+        const [hour, minutes, seconds] = [
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+        ];
+
+        document.write(["<br />" + hour + ":" + minutes + ":" + seconds]);
+        
+        function muestra(){
+            var mes;
+            const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+            var fechaInd = document.getElementById('fechaInp').value;
+
+            var datos = fechaInd.split("/");
+
+            mes = meses[(datos[1]-1)];
+
+            document.getElementById('resultado').innerHTML = mes + ", día " + datos[0] + " del año " + datos[2];
+        }
+
+   </script>
+
+    <form>
+        <fieldset>
+            <legend>Indica fecha</legend>
+            <label for="fechaInp">Fecha : </label>
+            <input type="text" name="fechaInp" id="fechaInp" placeholder="Separa por '/'">
+            <br>
+            <button type="button" name="Muestra" onclick="muestra()">Muestra</button>
+            <br>
+            <p id="resultado"></p>
+        </fieldset>
+    </form>
+</body>
+</html>

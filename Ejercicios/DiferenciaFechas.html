@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form>
+        <fieldset>
+            <legend>El pasado ya pasó</legend>
+
+            <p>Fecha actual: </p>
+            <p id="fechaAct"></p>
+            <br>
+            <label for="dia">Fecha Pasada: </label>
+            <input type="text" id="dia" name="dia" size="2px">
+            <label>     /     </label>  
+            <input type="text" id="mes" name="mes" size="2px">
+            <label>     /     </label>
+            <input type="text" id="año" name="año" size="2px">
+            <br>
+            <button type="button" name="Compara" onclick="comparar()">Compara</button>
+            <br>
+            <p>La diferencia de fechas es: </p>
+            <p id="diferencia"></p>
+        </fieldset>
+    </form>
+    <script>
+        const actual = new Date();
+        const [dia, mes, año] = [
+            actual.getDate(),
+            actual.getMonth(),
+            actual.getFullYear()
+        ]
+
+        const fechaHoy = dia + "/" + (mes+1) + "/" + año;
+
+        document.getElementById('fechaAct').innerHTML = fechaHoy;
+
+        const fechaHoyMilis = actual.getTime();
+
+        var diaInp = document.getElementById('dia').value;
+        var mesInp = document.getElementById('mes').value;
+        var añoInp = document.getElementById('año').value;
+
+        function comparar(){
+            
+            var fechaInp = new Date(añoInp, (mesInp - 1), diaInp);
+            console.log(fechaInp);
+            var milisInp = fechaInp.getTime();
+
+            var difMilis = fechaHoyMilis - milisInp;
+
+            var diasDif = difMilis/8.64e7;
+            var añosDif = diasDif/365; 
+            console.log(difMilis);
+            console.log(diasDif);
+            console.log(añosDif);
+
+            var añosresto= añosDif % 365;
+            console.log(añosresto);
+
+
+            var diasresto = mesesDif%12;
+            console.log(diasresto);
+
+
+            document.getElementById('diferencia').innerHTML = diasDif;
+        }
+    </script>
+</body>
+</html>
