@@ -10,9 +10,9 @@
             <br>
             <label for="dia">Fecha Pasada: </label>
             <input type="text" id="dia" name="dia" size="2px">
-            <label>     /     </label>  
+            <span>     /     </span>  
             <input type="text" id="mes" name="mes" size="2px">
-            <label>     /     </label>
+            <span>     /     </span>
             <input type="text" id="año" name="año" size="2px">
             <br>
             <button type="button" name="Compara" onclick="comparar()">Compara</button>
@@ -33,13 +33,12 @@
 
         document.getElementById('fechaAct').innerHTML = fechaHoy;
 
-        const fechaHoyMilis = actual.getTime();
-
-        var diaInp = document.getElementById('dia').value;
-        var mesInp = document.getElementById('mes').value;
-        var añoInp = document.getElementById('año').value;
-
         function comparar(){
+            const fechaHoyMilis = actual.getTime();
+
+            var diaInp = document.getElementById('dia').value;
+            var mesInp = document.getElementById('mes').value;
+            var añoInp = document.getElementById('año').value;
             
             var fechaInp = new Date(añoInp, (mesInp - 1), diaInp);
             console.log(fechaInp);
@@ -47,21 +46,17 @@
 
             var difMilis = fechaHoyMilis - milisInp;
 
-            var diasDif = difMilis/8.64e7;
-            var añosDif = diasDif/365; 
-            console.log(difMilis);
-            console.log(diasDif);
-            console.log(añosDif);
+            var diasTot = difMilis/8.64e7;
 
-            var añosresto= añosDif % 365;
-            console.log(añosresto);
+            var añosDif = diasTot/365; 
 
+            var mesesDif= (parseInt(diasTot) % 365) / 30;
 
-            var diasresto = mesesDif%12;
-            console.log(diasresto);
+            var díasDif = (parseInt(diasTot) % 365) % 30;
 
 
-            document.getElementById('diferencia').innerHTML = diasDif;
+            document.getElementById('diferencia').innerHTML = 
+            "La diferencia " + díasDif + " días, " + parseInt(mesesDif) + " meses, " + parseInt(añosDif) + " años.";
         }
     </script>
 </body>
