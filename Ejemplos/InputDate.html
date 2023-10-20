@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <label for="start">Start date: </label>
+    <input type="date" id="start" name="trip-start"
+    value="2018-07-22" min="2018-01-01" max="2018-12-31"/>
+    <p id="resultado"></p>
+
+    <script>
+        const dateControl = document.getElementById('start');
+        dateControl.addEventListener("input", event=>{
+            var separados = dateControl.value.split('-');
+            var dia = separados[2];
+            var mes = separados[1];
+            var año = separados[0];
+            document.getElementById('resultado').innerHTML = dia + "/" + mes + "/" + año;
+        });
+        
+    </script>
+</body>
+</html>
