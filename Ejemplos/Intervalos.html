@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejemplo de intervalos</title>
+        <style>
+            .go{
+                color:green;
+            }
+            .stop{
+                color:red;
+            }
+        </style>
+    </head>
+<body>
+    <div id="my_box">
+        <h3>Hello World</h3>
+    </div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        //variable para almacenar el intervalo
+        let nIntervId;
+
+        function changeColor(){
+            //Comprobamos si ya está configurado un intervalo
+            if(!nIntervId){
+                nIntervId = setInterval(flashText, 1000);
+            }
+        }
+
+        function flashText(){
+            const oElem = document.getElementById("my_box");
+            if(oElem.className === "go"){
+                oElem.className = "stop";
+            }else{
+                oElem.className = "go";
+            }
+        }
+
+        function stopTextColor(){
+            clearInterval(nIntervId);
+            //Libera el intervalo en la variable
+            nIntervId = null;
+        }
+
+        document.getElementById("start").addEventListener("click", changeColor);
+        document.getElementById("stop").addEventListener("click", stopTextColor)
+    </script>
+</body>
+</html>
