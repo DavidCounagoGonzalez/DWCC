@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p id="resultado"></p>
+        <br>
+        <p id="ganador"></p>
+        <br>
+        <button id="start">Start</button>
+    </body>
+    <script>
+        let valor = 5;
+        let intervPJ1;
+        let intervPJ2;
+
+        const min = 500;
+        const max = 1000;
+
+        resultado = document.getElementById("resultado");
+        ganador = document.getElementById("ganador");
+
+        function aleatorio(){
+            return Math.random() * (max - min) + min;
+        }
+
+        function competir(){
+            intervPJ1 = setInterval(PJ1, aleatorio());
+            intervPJ2 = setInterval(PJ2, aleatorio());
+        }
+
+        function PJ1(){
+            valor--;
+            resultado.innerHTML = valor;
+            clearInterval(intervPJ1);
+            if(valor<1){
+                ganador.innerHTML = "Gana el jugador 1";
+                clearInterval(intervPJ2);
+                intervPJ2 = null;
+                clearInterval(intervPJ1);
+                intervPJ1 = null;
+            }else if(1<valor<10){
+                competir();
+            }else{
+                clearInterval(intervPJ2);
+                intervPJ2 = null;
+                clearInterval(intervPJ1);
+                intervPJ1 = null;
+            }
+        }
+
+        function PJ2(){
+            valor++;
+            resultado.innerHTML = valor;
+            clearInterval(intervPJ2);
+            if(valor>10){
+                ganador.innerHTML = "Gana el jugador 2";
+                clearInterval(intervPJ1);
+                intervPJ1 = null;
+                clearInterval(intervPJ2);
+                intervPJ2 = null;
+            }else if(1<valor<10){
+                competir();
+            }else{
+                clearInterval(intervPJ1);
+                intervPJ1 = null;
+                clearInterval(intervPJ2);
+                intervPJ2 = null;
+            }
+        }
+
+        document.getElementById("start").addEventListener("click", competir);
+
+    </script>
+</html>
