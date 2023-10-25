@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<body>
+    <p id="horaAct"></p>
+    <br>
+
+    <form id="f01">
+        <input type="radio" id="24" name="modo" value="24" checked>
+        <label for="24">24H</label>
+        <input type="radio" id="12" name="modo" value="12">
+        <label for="12">12H</label>
+    </form>
+
+    <br>
+    <button onclick="t01 = setInterval(actualiza,1000)">Sigue</button>
+    <button onclick="clearInterval(t01)">Parar</button>
+
+    <script>
+        t01 = setInterval(actualiza, 1000);
+        pHora = document.getElementById('horaAct');
+        reloj='';
+
+        function actualiza(){
+        var date = new Date();
+        var [horas, minutos, segundos]=[
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+        ];
+
+        horas<10 ? horas = '0' + horas : horas;
+        minutos<10 ? minutos =  '0' + minutos : minutos;
+        segundos<10 ? segundos = '0' + segundos : segundos;
+
+        if(document.getElementById('12').checked){
+            if(horas>=13){
+            var AmPm = horas >= 12 ? 'pm' : 'am';
+            horas -= 12;
+            }
+            horas<10 ? horas = '0' + horas : horas;
+            reloj= horas + ":" + minutos + ":" + segundos + " " + AmPm;
+        }else{
+            reloj = horas + ":" + minutos + ":" + segundos;
+        }
+        
+        pHora.innerHTML = reloj;
+        }
+
+        
+    </script>
+</body>
+</html>
