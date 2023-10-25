@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <script>
+        v01=0;
+
+        function modificar(op){
+        // Con Radio Buttons
+        //     for(i=0; i<op.length; i++){
+        //         if(op[i].checked)
+        //             opcion = op[i].value;
+        //             console.log(opcion);
+        //     }
+
+        //     (opcion === "incrementa") ?
+        //     document.getElementById("v01").innerHTML = v01++
+        //     :
+        //     document.getElementById("v01").innerHTML = v01--;
+
+        opcion = 0;
+        for(i=0; i<op.elements.length; i++){
+            if(op.elements[i].type === "checkbox"){
+                if(op.elements[i].checked){
+                    opcion = 1;
+                }
+            }
+        }
+
+        (opcion == 1)?
+        document.getElementById("v01").innerHTML = v01--
+        :
+        document.getElementById("v01").innerHTML = v01++;
+
+        }
+
+        function arrancar(){
+        // opciones = document.getElementsByName('opciones');
+        //t01 = setInterval(modificar,1000,opciones);
+
+        form = document.getElementById('f01');
+
+        t01 = setInterval(modificar,1000,form);
+        }
+
+    </script>
+
+    <p id="v01"></p>
+
+    <!-- Con Radio Buttons
+        <input type="radio" id="incrementa" name="opciones" value="incrementa" checked>
+    <label for="incrementa">Incrementa</label>
+    <input type="radio" id="decrementa" name="opciones" value="decrementa">
+    <label for="decrementa">Decrementa</label> -->
+
+    <form id="f01">
+        <input type="checkbox" id="decrementa" name="decrementa" value="decrementa">
+        <label for="decrementa">Decrementa</label>
+    </form>
+
+    <br>
+    <button onclick="arrancar()" >Arrancar</button>
+    <br>
+    <button onclick="clearInterval(t01)">Parar</button>
+
+</body>
+</html>
