@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <p id="cuenta"></p>
+
+    <script>
+       setInterval(cuentAtras, 1000);
+       estreno = "28 Oct 2023 11:00:00 GMT+2";
+       const estrMilis = Date.parse(estreno);
+        
+       function cuentAtras(){
+        var actual = new Date();
+        const segDias = 86400;
+        var milis = actual.getTime();
+        var diferencia = estrMilis - milis;
+
+        var segundosTot = diferencia/1000;
+
+        var dias = Math.trunc(segundosTot/segDias);
+        var horas = Math.trunc((segundosTot % segDias) / 3600) ;
+        var minutos = Math.trunc(((segundosTot % segDias) % 3600) / 60);
+        var segundos = Math.trunc(((segundosTot % segDias) %3600) % 60);
+
+
+
+        document.getElementById('cuenta').innerHTML = "Quedan: " + dias + " días,  " + horas + " horas,  " + minutos + " minutos y " + segundos + " segundos para el estreno.";
+       }
+    </script>
+</body>
+</html>
