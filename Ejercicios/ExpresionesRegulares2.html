@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<body>
+    <p id="texto"></p>
+
+    <p>Posición 'ana':</p>
+    <p id="ana"></p>
+    <p>Posición 'roi':</p>
+    <p id="roi"></p>
+    <p>Posición 'eva':</p>
+    <p id="eva"></p>
+
+    <script>
+        const cadena= "anaroieva1234567890 ";
+        var caracteres = cadena.split('');
+        console.log(cadena.length);
+        const txt = document.getElementById("texto");
+        var texto;
+
+        for(i=0; i<3000; i++){
+            rand = Math.floor(Math.random() * cadena.length);
+            texto += caracteres[rand];
+        }
+        txt.innerHTML = texto;
+
+        buscar();
+
+        function buscar(){
+            const ana = document.getElementById('ana');
+            const roi = document.getElementById('roi');
+            const eva = document.getElementById('eva');
+
+            const anaReg = new RegExp('ana', 'g');
+
+            txt.innerHTML = "-->" + texto.replace('ana', '<b style="color:blue">A-N-A</b>');
+            
+            
+        }
+    </script>
+</body>
+</html>
