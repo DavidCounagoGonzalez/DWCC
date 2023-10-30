@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae malesuada sem, vel aliquam massa. Suspendisse potenti. Donec euismod felis non velit ullamcorper eleifend. Sed sit amet lectus in arcu pulvinar pulvinar auctor eget tortor. Curabitur egestas erat id est blandit, at fermentum libero convallis. Nulla ut leo aliquam, porttitor leo laoreet, rutrum velit. Curabitur libero felis, condimentum vel nibh a, malesuada feugiat elit. Nulla pulvinar justo magna, vitae iaculis tellus fermentum eu. Ut dui erat, dictum at finibus quis, porta sit amet lectus. Maecenas bibendum elementum nisi vitae dapibus. Phasellus lacus enim, condimentum at facilisis vel, semper non nisi. Aenean eu lacus sed dolor semper elementum et eget odio.<br><br>
+
+        Nullam eu sagittis arcu, quis maximus lorem. Nunc convallis quam mi, mollis tristique lacus eleifend in. Morbi commodo felis neque, vel fringilla urna congue eget. Integer lacinia et tortor non ultricies. Quisque erat lorem, sodales a mattis non, ultricies a magna. Nunc et metus id elit euismod hendrerit sit amet et augue. Fusce interdum et mi eget facilisis. Nam imperdiet nunc dui. Nullam in euismod lectus. Nunc faucibus leo id mi egestas egestas.<br><br>
+        
+        In a consequat odio, malesuada scelerisque purus. Fusce malesuada, purus sit amet ornare scelerisque, risus nulla mollis augue, vel consequat purus neque eu augue. Pellentesque ut elit sed elit aliquam mollis. Pellentesque venenatis eu nibh non imperdiet. Pellentesque finibus viverra neque, non bibendum magna tempus at. Quisque lectus dolor, accumsan vel rhoncus id, mollis ut nulla. Cras eleifend non risus pharetra pharetra.</p>
+    <label for="busqueda">Busqueda: </label>
+    <input type="text" id="busqueda">
+    <p id="resultado"></p>
+    <br>
+    <button type="button" id="buscar" onclick="busca()">Buscar</button>
+
+    <script>
+        const txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae malesuada sem, vel aliquam massa. Suspendisse potenti. Donec euismod felis non velit ullamcorper eleifend. Sed sit amet lectus in arcu pulvinar pulvinar auctor eget tortor. Curabitur egestas erat id est blandit, at fermentum libero convallis. Nulla ut leo aliquam, porttitor leo laoreet, rutrum velit. Curabitur libero felis, condimentum vel nibh a, malesuada feugiat elit. Nulla pulvinar justo magna, vitae iaculis tellus fermentum eu. Ut dui erat, dictum at finibus quis, porta sit amet lectus. Maecenas bibendum elementum nisi vitae dapibus. Phasellus lacus enim, condimentum at facilisis vel, semper non nisi. Aenean eu lacus sed dolor semper elementum et eget odio" + 
+                    "Nullam eu sagittis arcu, quis maximus lorem. Nunc convallis quam mi, mollis tristique lacus eleifend in. Morbi commodo felis neque, vel fringilla urna congue eget. Integer lacinia et tortor non ultricies. Quisque erat lorem, sodales a mattis non, ultricies a magna. Nunc et metus id elit euismod hendrerit sit amet et augue. Fusce interdum et mi eget facilisis. Nam imperdiet nunc dui. Nullam in euismod lectus. Nunc faucibus leo id mi egestas egestas." +
+                    "In a consequat odio, malesuada scelerisque purus. Fusce malesuada, purus sit amet ornare scelerisque, risus nulla mollis augue, vel consequat purus neque eu augue. Pellentesque ut elit sed elit aliquam mollis. Pellentesque venenatis eu nibh non imperdiet. Pellentesque finibus viverra neque, non bibendum magna tempus at. Quisque lectus dolor, accumsan vel rhoncus id, mollis ut nulla. Cras eleifend non risus pharetra pharetra."
+
+        function  busca(){
+            cadena = document.getElementById('busqueda').value;
+
+            var reg = new RegExp(cadena, 'i');
+
+            document.getElementById('resultado').innerHTML = reg.test(txt);
+        }
+    </script>
+</body>
+</html>
