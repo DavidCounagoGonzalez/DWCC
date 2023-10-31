@@ -11,28 +11,57 @@
     <p id="eva"></p>
 
     <script>
-        const cadena= "anaroieva1234567890 ";
+        const cadena= "anroiev1234567890 ";
         var caracteres = cadena.split('');
-        console.log(cadena.length);
         const txt = document.getElementById("texto");
-        var texto;
+        var texto = "";
 
         for(i=0; i<3000; i++){
-            rand = Math.floor(Math.random() * cadena.length);
-            texto += caracteres[rand];
+            texto += cadena.charAt(Math.floor(Math.random() * cadena.length));
+            
         }
-        txt.innerHTML = texto;
+
+        console.log(texto);
+
+        const ana = document.getElementById('ana');
+        const roi = document.getElementById('roi');
+        const eva = document.getElementById('eva');
+
+        const anaReg = new RegExp('ana', 'i');
+        const roiReg = new RegExp ('roi', 'i');
+        const evaReg = new RegExp ('eva', 'i');
+
+        i = 0; j = 0; h = 0;
+        anaArray = []; roiArray = []; evaArray = [];
 
         buscar();
 
         function buscar(){
-            const ana = document.getElementById('ana');
-            const roi = document.getElementById('roi');
-            const eva = document.getElementById('eva');
 
-            const anaReg = new RegExp('ana', 'g');
+            while(texto.match(anaReg) || texto.match(roiReg) || texto.match(evaReg)){
+                if(texto.match(anaReg)){
+                    anaArray[i] = texto.search('ana');
+                    texto = texto.replace('ana', '<b style="color:blue">A-N-A</b>');
+                    i++;
+                }
+            
+                if(texto.match(roiReg)){
+                    roiArray[i] = texto.search('roi');
+                    texto = texto.replace('roi', '<b style="color:green">R-O-I</b>');
+                    j++;
+                }
 
-            txt.innerHTML = "-->" + texto.replace('ana', '<b style="color:blue">A-N-A</b>');
+                if(texto.match(evaReg)){
+                    evaArray[i] = texto.search('eva');
+                    texto = texto.replace('eva', '<b style="color:red">E-V-A</b>');
+                    h++;
+                }
+            }
+
+            txt.innerHTML = texto;
+            ana.innerHTML = anaArray;
+            roi.innerHTML = roiArray;
+            eva.innerHTML = evaArray;
             
             
         }
