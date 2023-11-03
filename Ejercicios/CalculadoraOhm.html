@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="voltaje">Voltaje </label>
+    <input type="text" id="voltaje" >
+    <button type="button" id="calcula1" onclick="calcula()">Calcular</button>
+    <br><br>
+    <label for="intensidad">Intensidad </label>
+    <input type="text" id="intensidad" readonly>
+    <br><br>
+    <label for="potencia">Potencia </label>
+    <input type="text" id="potencia" readonly>
+    <br><br>
+    <label for="resistencia">Resistencia </label>
+    <input type="text" id="resistencia">
+    <button type="button" id="calcula2" onclick="calcula()">Calcular</button>
+    <p id="Errores"></p>
+
+    <script>
+        function calcula(){
+            var volt = document.getElementById('voltaje').value;
+            var resist = document.getElementById('resistencia').value;
+            var intensInput = document.getElementById('intensidad');
+            var potenInput = document.getElementById('potencia');
+            try{
+                if(volt == "" || resist == ""){
+                    throw "Faltan datos";
+                }else if(resist <= 0){
+                    throw "La resistencia no puede ser 0 o menor";
+                }else if(isNan(volt)|| isNaN(resist)){
+                    throw "No puedes calcular letras";
+                }else{
+                    var intens = volt/resist;
+                    intensInput.value = intens;
+
+                    var poten = intens * volt;
+                    potenInput.value = poten;
+                }
+
+                
+            }catch(err){
+                document.getElementById("Errores").innerHTML = "Error: " + err;
+            }
+        }
+    </script>
+</body>
+</html>
