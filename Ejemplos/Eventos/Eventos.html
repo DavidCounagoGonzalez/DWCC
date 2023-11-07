@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: aquamarine;
+            height: 200px;
+            width: 300px;
+        }
+    </style>
+    <script>
+        function setTexto01(){
+            document.getElementById("prueba").innerHTML = "Quita el ratón!!!";
+        }
+        function setTextoInic(){
+            document.getElementById("prueba").innerHTML = "Pasa el ratón...";
+        }
+        function iniciar(){
+            document.getElementById("prueba").innerHTML = "Pasa el ratón por primera vez."
+        }
+    </script>
+</head>
+<body onload="iniciar()">
+    <div id="prueba" onmouseover="setTexto01()" onmouseout="setTextoInic()"></div>
+</body>
+</html>
