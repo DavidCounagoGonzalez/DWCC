@@ -6,38 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        body {
+            background: #0E3741;
             height: 500px;
             width: 600px;
         }
-        #sigue{
-            background-color: burlywood;
-            width: 75px;
+
+        .circulo {
+            position: absolute;
+            width: 50px;
             height: 50px;
-        }
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            background: white;
+            border-radius: 80%;
+            backface-visibility: hidden;
+            }
     </style>
 </head>
-<body onmousemove="showCoords(event)" 
-style="border:1px solid black;padding:4px"
-onload="mueve()">
-    <h2>Prueba Ratón</h2>
+<body style="border:1px solid black;padding:4px">
 
-    <div>
-    <p id="coords">Coordinates:</p>
-    <div id="sigue"></div>
-    </div>
+    <h2>Prueba Ratón</h2>
+    <p id="coords"></p>
+    <div class="circulo"></div>
 
     <script>
-    function showCoords(event) {
-    let x = event.clientX;
-    let y = event.clientY;
-    let text = "X coords: " + x + ", Y coords: " + y;
-    document.getElementById("coords").innerHTML = text;
-    }
-    function mueve(){
-        document.getElementById("sigue").style.top = "100px";
-        document.getElementById("sigue").style.left = "100px";
-    }
+    addEventListener("mousemove", (e)=> {
+        let x = event.clientX;
+        let y = event.clientY;
+        let text = "X coords: " + x + ", Y coords: " + y;
+        document.getElementById("coords").innerHTML = text;
+        document.getElementById("circulo").style.top = x + "px";
+        document.getElementById("circulo").style.left = y + "px";
+    });
     </script>
 </body>
 </html>
