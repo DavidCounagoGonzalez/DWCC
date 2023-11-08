@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="fuera()">
+    <div id="f1">
+        <button onclick="changeBackground()">Cambiar el color</button>
+        <script>
+            const btn = document.querySelector("button");
+
+            function random(number) {
+            return Math.floor(Math.random() * (number + 1));
+            }
+
+            function changeBackground() {
+            const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+            document.getElementById("f1").style.backgroundColor = rndCol;
+            }
+        </script>
+    </div>
+
+    <form id="f2">
+        <label for="fecha">Rango: </label>
+        <input type="range" id="rango" name="rango" value="100" 
+        oninput="actualiza()" onmouseup="esconde()" onmousedown="muestra()"/>
+
+        <p id ="valorBarra">100</p>
+        <script>
+            valor = document.getElementById("valorBarra");
+            barra = document.getElementById("rango");
+            function actualiza(){
+                valor.innerHTML = barra.value;
+            };
+            function esconde(){
+                valor.style.visibility = "hidden";
+            }
+            function muestra(){
+                valor.style.visibility = "visible";
+            }
+        </script>
+    </form>
+
+    <div id="demo" onmouseover="dentro()" onmouseout="fuera()" onmouseup="pulsar()"></div>
+
+    <script>
+
+        const texto = document.getElementById("demo");
+
+        function fuera() {
+        texto.innerHTML = "Hola!";
+        }
+
+        function pulsar() {
+        texto.innerHTML = "No me pegues!";
+        }
+
+        function dentro() {
+        texto.innerHTML = "Hola!!!";
+        }
+    </script>
+
+    <p>Presiona una tecla en el input:</p>
+
+    <input id="in1"type="text" onkeydown="presiona()" onkeyup="suelta()">
+
+    <p id="p1"></p>
+
+    <script>
+    function presiona() {
+        document.getElementById("p1").innerHTML = "Matén pulsado";
+    }
+    function suelta(){
+        document.getElementById("p1").innerHTML = "Has soltado"
+        document.getElementById("in1").value = "";
+    }
+    </script>
+
+</body>
+</html>

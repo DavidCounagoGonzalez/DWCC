@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 500px;
+            width: 600px;
+        }
+        #sigue{
+            background-color: burlywood;
+            width: 75px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body onmousemove="showCoords(event)" 
+style="border:1px solid black;padding:4px"
+onload="mueve()">
+    <h2>Prueba Ratón</h2>
+
+    <div>
+    <p id="coords">Coordinates:</p>
+    <div id="sigue"></div>
+    </div>
+
+    <script>
+    function showCoords(event) {
+    let x = event.clientX;
+    let y = event.clientY;
+    let text = "X coords: " + x + ", Y coords: " + y;
+    document.getElementById("coords").innerHTML = text;
+    }
+    function mueve(){
+        document.getElementById("sigue").style.top = "100px";
+        document.getElementById("sigue").style.left = "100px";
+    }
+    </script>
+</body>
+</html>
