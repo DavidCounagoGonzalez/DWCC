@@ -37,8 +37,8 @@
         let y = event.clientY;
         let text = "X coords: " + x + ", Y coords: " + y;
         document.getElementById("coords").innerHTML = text;
-        document.getElementById("circulo").style.top = (y+25) + "px";
-        document.getElementById("circulo").style.left = (x+25) + "px";
+        document.getElementById("circulo").style.top = y + "px"; //y +25 si quieres el circulo debajo
+        document.getElementById("circulo").style.left = x + "px"; //x +25 si quieres el circulo debajo
     });
     </script>
 </body>
