@@ -12,7 +12,7 @@
             width: 600px;
         }
 
-        .circulo {
+        #circulo {
             position: absolute;
             width: 50px;
             height: 50px;
@@ -29,7 +29,7 @@
 
     <h2>Prueba Ratón</h2>
     <p id="coords"></p>
-    <div class="circulo"></div>
+    <div id="circulo"></div>
 
     <script>
     addEventListener("mousemove", (e)=> {
@@ -37,8 +37,8 @@
         let y = event.clientY;
         let text = "X coords: " + x + ", Y coords: " + y;
         document.getElementById("coords").innerHTML = text;
-        document.getElementById("circulo").style.top = x + "px";
-        document.getElementById("circulo").style.left = y + "px";
+        document.getElementById("circulo").style.top = (y+25) + "px";
+        document.getElementById("circulo").style.left = (x+25) + "px";
     });
     </script>
 </body>
