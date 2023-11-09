@@ -7,9 +7,9 @@
     <title>Document</title>
     <style>
         body {
-            background: #0E3741;
-            height: 500px;
-            width: 600px;
+            background: #49a0b6;
+            height: 1024px;
+            width: 100%;
         }
 
         #circulo {
@@ -23,23 +23,46 @@
             border-radius: 80%;
             backface-visibility: hidden;
             }
+
+        #contenido{
+            background-color: bisque;
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            height: 300px;
+            width: 500px;
+        }
+        #divCoords{
+            position: absolute;
+            top: 620px;
+            left: 450px;
+        }
     </style>
 </head>
-<body style="border:1px solid black;padding:4px">
+<body onmousemove="pageCoords()">
 
     <h2>Prueba Ratón</h2>
     <p id="coords"></p>
+    <div id="contenido" onmousemove="dentro()"></div>
+    <p id="divCoords"></p>
     <div id="circulo"></div>
 
     <script>
-    addEventListener("mousemove", (e)=> {
-        let x = event.clientX;
-        let y = event.clientY;
+    function pageCoords(){
+        let x = event.pageX;
+        let y = event.pageY;
         let text = "X coords: " + x + ", Y coords: " + y;
         document.getElementById("coords").innerHTML = text;
         document.getElementById("circulo").style.top = y + "px"; //y +25 si quieres el circulo debajo
         document.getElementById("circulo").style.left = x + "px"; //x +25 si quieres el circulo debajo
-    });
+
+    };
+    function dentro(){
+        let dx = event.clientX;
+        let dy = event.clientY
+        let dtext = "X coords: " + dx + ", Y coords: " + dy;
+        document.getElementById("divCoords").innerHTML = dtext;
+    }
     </script>
 </body>
 </html>
