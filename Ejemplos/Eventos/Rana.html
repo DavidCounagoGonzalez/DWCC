@@ -34,9 +34,8 @@
         }
         #caja{
             position: absolute;
-            height: 200px;
-            width: 300px;
-            border: 1px solid black;
+            height: 150px;
+            width: 250px;
             top: 500px;
             left: 500px;
         }
@@ -65,8 +64,9 @@
             console.log(body.offsetHeight + " " + body.offsetWidth);
             cont ++;
             if(cont>2){
-                const caja = document.createElement("div");
-                caja.setAttribute("id", "caja")
+                const caja = document.createElement("img");
+                caja.setAttribute("id", "caja");
+                caja.setAttribute("src", "jumping-gatito.gif");
                 document.body.appendChild(caja);
             }
         };
@@ -76,16 +76,16 @@
             console.log(caja.style.top);
             switch(evt.keyCode){
                 case 87:
-                    caja.style.top = ((caja.clientX) +10) + "px";
+                    caja.style.top = ((caja.offsetTop) -10) + "px";
                     break;
                 case 83:
-                    caja.style.top = ((caja.clientX) -10) + "px";
+                    caja.style.top = ((caja.offsetTop) +10) + "px";
                     break;
                 case 65:
-                    caja.style.left = ((caja.clientY) -10) + "px";
+                    caja.style.left = ((caja.offsetLeft) -10) + "px";
                     break;
                 case 68:
-                    caja.style.left = ((caja.clientY) +10) + "px";
+                    caja.style.left = ((caja.offsetLeft) +10) + "px";
                     break;
             }
 
