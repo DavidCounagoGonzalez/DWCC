@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background: #49a0b6;
+        }
+        #contenido{
+            background-color: bisque;
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            height: 300px;
+            width: 500px;
+        }
+        #divCoords{
+            position: absolute;
+            top: 620px;
+            left: 450px;
+        }
+        #img{
+            position: absolute;
+            border: 1px solid black;
+            height: 100px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body id="body">
+
+    <h2>Pilla al PeepoClown</h2>
+    <p id="felicidades"></p>
+    <img id="img" src="peepoClown.png" alt="Aquí había una foto"
+    onmousemove="pageCoords(event)" onclick="felicidades(event)">
+
+    <script>
+    function pageCoords(e){
+        let divA = body.offsetHeight;
+        let divL = body.offsetWidth;
+
+        let x = Math.floor(Math.random() * divA);
+        let y = Math.floor(Math.random() * divL);
+
+        let text = "DOM X coords: " + x + ", Y coords: " + y;
+        document.getElementById("img").style.top = y + "px"; //y -tamaño div para arriba izquierda
+        document.getElementById("img").style.left = x + "px"; //x -ancho div para arriba izquierda
+         console.log(body.offsetHeight + " " + body.offsetWidth);
+    };
+
+    function felicidades(e){
+        document.getElementById('felicidades').innerHTML = 'Le has dado';
+    }
+    </script>
+</body>
+</html>

@@ -39,16 +39,17 @@
         }
     </style>
 </head>
-<body onmousemove="pageCoords()">
+<body onmousemove="pageCoords(event); coordScreen(event)">
 
     <h2>Prueba Ratón</h2>
     <p id="coords"></p>
-    <div id="contenido" onmousemove="dentro()"></div>
+    <p id="coordScreen"></p>
+    <div id="contenido" onmousemove="dentro(event)"></div>
     <p id="divCoords"></p>
     <div id="circulo"></div>
 
     <script>
-    function pageCoords(){
+    function pageCoords(e){
         let x = event.pageX;
         let y = event.pageY;
         let text = "X coords: " + x + ", Y coords: " + y;
@@ -57,11 +58,17 @@
         document.getElementById("circulo").style.left = x + "px"; //x +25 si quieres el circulo debajo
 
     };
-    function dentro(){
+    function dentro(e){
         let dx = event.clientX;
         let dy = event.clientY
         let dtext = "X coords: " + dx + ", Y coords: " + dy;
         document.getElementById("divCoords").innerHTML = dtext;
+    }
+    function coordScreen(e){
+        let sx = event.screenX;
+        let sy = event.screenY;
+        let text = "Screen X coords: " + sx + ", Y coords: " + sy;
+        document.getElementById("coordScreen").innerHTML = text;
     }
     </script>
 </body>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #49a0b6;
+            height: 1024px;
+            width: 100%;
+        }
+        #contenido{
+            background-color: bisque;
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            height: 300px;
+            width: 500px;
+        }
+        #divCoords{
+            position: absolute;
+            top: 620px;
+            left: 450px;
+        }
+        #conmigo{
+            position: absolute;
+            border: 1px solid black;
+        }
+        #sigue{
+            position: absolute;
+        }
+    </style>
+</head>
+<body onmousemove="pageCoords(event); coordScreen(event)">
+
+    <h2>Sígueme</h2>
+    <div id="contenido" onmousemove="dentro(event)"></div>
+    <p id="divCoords"></p>
+    <label id="sigue"></label>
+    <div id="conmigo">
+        <p id="coords"></p>
+        <p id="coordScreen"></p>
+    </div>
+
+    <script>
+    function pageCoords(e){
+        let x = event.pageX;
+        let y = event.pageY;
+        let divA = document.getElementById('sigue').offsetHeight;
+        let divL = document.getElementById('sigue').offsetWidth;
+        let text = "DOM X coords: " + x + ", Y coords: " + y;
+        document.getElementById("sigue").innerHTML = text;
+        document.getElementById("sigue").style.top = (y-divA) + "px"; //y -tamaño div para arriba izquierda
+        document.getElementById("sigue").style.left = (x-divL) + "px"; //x -ancho div para arriba izquierda
+
+    };
+    function dentro(e){
+        let dx = event.clientX;
+        let dy = event.clientY
+        let dtext = "X coords: " + dx + ", Y coords: " + dy;
+        document.getElementById("divCoords").innerHTML = dtext;
+    }
+    function coordScreen(e){
+        let sx = event.screenX;
+        let sy = event.screenY;
+        let text = "Screen X coords: " + sx + ", Y coords: " + sy;
+        document.getElementById("coordScreen").innerHTML = text;
+    }
+    </script>
+</body>
+</html>
