@@ -32,6 +32,14 @@
             height: 100px;
             width: 150px;
         }
+        #caja{
+            position: absolute;
+            height: 200px;
+            width: 300px;
+            border: 1px solid black;
+            top: 500px;
+            left: 500px;
+        }
     </style>
 </head>
 <body id="body">
@@ -42,22 +50,47 @@
     onmousemove="pageCoords(event)" onclick="felicidades(event)">
 
     <script>
-    function pageCoords(e){
-        let divA = body.offsetHeight;
-        let divL = body.offsetWidth;
+        let cont = 0;
+        function pageCoords(e){ 
 
-        let x = Math.floor(Math.random() * divA);
-        let y = Math.floor(Math.random() * divL);
+            let divA = body.offsetHeight;
+            let divL = body.offsetWidth;
 
-        let text = "DOM X coords: " + x + ", Y coords: " + y;
-        document.getElementById("img").style.top = y + "px"; //y -tamaño div para arriba izquierda
-        document.getElementById("img").style.left = x + "px"; //x -ancho div para arriba izquierda
-         console.log(body.offsetHeight + " " + body.offsetWidth);
-    };
+            let x = Math.floor(Math.random() * divA);
+            let y = Math.floor(Math.random() * divL);
 
-    function felicidades(e){
-        document.getElementById('felicidades').innerHTML = 'Le has dado';
-    }
+            let text = "DOM X coords: " + x + ", Y coords: " + y;
+            document.getElementById("img").style.top = y + "px"; //y -tamaño div para arriba izquierda
+            document.getElementById("img").style.left = x + "px"; //x -ancho div para arriba izquierda
+            console.log(body.offsetHeight + " " + body.offsetWidth);
+            cont ++;
+            if(cont>2){
+                const caja = document.createElement("div");
+                caja.setAttribute("id", "caja")
+                document.body.appendChild(caja);
+            }
+        };
+
+        function moverCaja(evt){
+            caja = document.getElementById("caja");
+            console.log(caja.style.top);
+            switch(evt.keyCode){
+                case 87:
+                    caja.style.top = ((caja.clientX) +10) + "px";
+                    break;
+                case 83:
+                    caja.style.top = ((caja.clientX) -10) + "px";
+                    break;
+                case 65:
+                    caja.style.left = ((caja.clientY) -10) + "px";
+                    break;
+                case 68:
+                    caja.style.left = ((caja.clientY) +10) + "px";
+                    break;
+            }
+
+        }
+        window.addEventListener('keydown', moverCaja);
     </script>
 </body>
 </html>
