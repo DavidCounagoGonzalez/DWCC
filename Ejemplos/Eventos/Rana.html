@@ -34,9 +34,10 @@
             width: 150px;
         }
         #caja{
+            border: 1px solid black;
             position: absolute;
             height: 150px;
-            width: 250px;
+            width: 200px;
             top: 500px;
             left: 500px;
         }
@@ -62,9 +63,7 @@
             let text = "DOM X coords: " + x + ", Y coords: " + y;
             document.getElementById("img").style.top = y + "px"; //y -tamaño div para arriba izquierda
             document.getElementById("img").style.left = x + "px"; //x -ancho div para arriba izquierda
-            console.log(divL);
-            console.log(body.offsetHeight);
-            console.log(y);
+
             cont ++;
             if(cont==3){
                 const caja = document.createElement("img");
@@ -75,6 +74,7 @@
         };
 
         function moverCaja(evt){
+            var
             caja = document.getElementById("caja");
             switch(evt.keyCode){
                 case 87:
@@ -90,8 +90,36 @@
                     caja.style.left = ((caja.offsetLeft) +10) + "px";
                     break;
             }
-
+            atrapa();
+            pageCoords(event);
         }
+        function atrapa(){
+            const rana = document.getElementById('img');
+            const caja = document.getElementById('caja');
+            var rana_pos={
+                t : rana.offsetTop,
+                l : rana.offsetLeft,
+                r : rana.offsetLeft + rana.clientWidth,
+                b : rana.offsetTop + rana.clientHeight
+            };
+            var caja_pos={
+                t : caja.offsetTop,
+                l : caja.offsetLeft,
+                r : caja.offsetLeft + caja.clientWidth,
+                b : caja.offsetTop + caja.clientHeight
+            };
+            
+
+            if(rana_pos.l>=caja_pos.l && rana_pos.r<=caja_pos.r &&
+                rana_pos.b<=caja_pos.b && rana_pos.t>=caja_pos.t){
+
+                console.log(rana_pos.t, rana_pos.l, rana_pos.b, rana_pos.r);
+                console.log(caja_pos.t, caja_pos.l, caja_pos.b, caja_pos.r);
+                document.getElementById('felicidades').innerHTML="felicidades has atrapado al peepoclown";
+
+            }
+        }
+
         window.addEventListener('keydown', moverCaja);
     </script>
 </body>
