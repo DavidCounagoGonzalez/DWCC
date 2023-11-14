@@ -38,19 +38,24 @@
             position: absolute;
             height: 150px;
             width: 200px;
-            top: 500px;
-            left: 500px;
+            top: 400px;
+            left: 700px
+
         }
     </style>
 </head>
 <body id="body">
 
-    <h2>Pilla al PeepoClown</h2>
+    <h2>Pilla al PeepoClown al salto</h2>
     <p id="felicidades"></p>
     <img id="img" src="peepoClown.png" alt="Aquí había una foto"
     onmousemove="pageCoords(event)" onclick="felicidades(event)">
 
     <script>
+        // let nIntervId;
+        // if(!nIntervId){
+        //         nIntervId=setInterval(pageCoords, 2500);
+        //     }
         let cont = 0;
         function pageCoords(e){ 
 
@@ -70,7 +75,9 @@
                 caja.setAttribute("id", "caja");
                 caja.setAttribute("src", "jumping-gatito.gif");
                 document.body.appendChild(caja);
+                document.getElementById('caja').addEventListener('click', aumenta);
             }
+            atrapa();
         };
 
         function moverCaja(evt){
@@ -91,7 +98,6 @@
                     break;
             }
             atrapa();
-            pageCoords(event);
         }
         function atrapa(){
             const rana = document.getElementById('img');
@@ -113,17 +119,24 @@
             if(rana_pos.l>=caja_pos.l && rana_pos.r<=caja_pos.r &&
                 rana_pos.b<=caja_pos.b && rana_pos.t>=caja_pos.t){
 
-                console.log(rana_pos.t, rana_pos.l, rana_pos.b, rana_pos.r);
-                console.log(caja_pos.t, caja_pos.l, caja_pos.b, caja_pos.r);
                 document.getElementById('felicidades').innerHTML="felicidades has atrapado al peepoclown";
-
+                // clearInterval(nIntervId);
+                // nIntervId = null;
+                location.href = "Felicidades.html";
             }
+        }
+        function aumenta(){
+            caja = document.getElementById('caja');
+            caja.style.height = (caja.clientHeight + 25) + "px";
+            caja.style.width = (caja.clientWidth + 25) + "px";
         }
 
         //Podemos crear un contador para que cada 5 presiones de tecla la rana se mueva
         //para dar más facilidad y que no sea tan aleatorio
 
         window.addEventListener('keydown', moverCaja);
+        
+
     </script>
 </body>
 </html>
