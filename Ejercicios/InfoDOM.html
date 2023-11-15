@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndoDOM</title>
+</head>
+<body>
+    <p id="p1">Hola</p>
+    <div id="div1">
+        <label id="etiqueta">Imagen: </label>
+        <img id="imagen" src="peepoClown.png" alt="PeepoClown">
+    </div>
+    <footer>Datos de <strong>Contacto</strong></footer>
+
+    <script>
+        alert(document.body.innerHTML);
+
+        var hijo1 = document.getElementById("div1").childNodes[1];
+        console.log(hijo1);
+
+        console.log((document.getElementById('imagen').nodeName).toLowerCase());
+
+        //Aquí hago virguerías para imprimir solo las etiquetas con child
+        elemNum = document.body.childElementCount;
+        for(i=0;i<elemNum;i++){
+            let elemento = document.body.childNodes[i];
+
+            if(elemento.nodeName == "#text"){
+                console.log(elemento.nodeName);
+                elemNum++;
+            }else{
+                document.write(i + ". " + elemento.nodeName + " ");
+            }
+            elemento = elemento.nextSibling;
+        }
+
+        //Aquí uso children para solo contar las etiquetas
+        // elemNum = document.body.children;
+        // for(i=0;i<elemNum.length;i++){
+        //     let elemento = document.body.children[i];
+
+        //     if(elemento.nodeName == "#text"){
+        //         console.log(elemento.nodeName);
+        //     }else{
+        //         document.write(i + ". " + elemento.nodeName + " ");
+        //     }
+        //     elemento = elemento.nextSibling;
+        // }
+       
+    </script>
+</body>
+</html>
