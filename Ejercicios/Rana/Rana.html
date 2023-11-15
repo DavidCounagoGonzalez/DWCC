@@ -58,23 +58,27 @@
         //     }
         let cont = 0;
         function pageCoords(e){ 
-
+            //Recogemos los valores de altura y ancho del body
             let divA = body.offsetHeight;
             let divL = body.offsetWidth;
 
+            //Creamos dos variables con valores random respecto al tamaño del body
             let x = Math.floor(Math.random() * divL);
             let y = Math.floor(Math.random() * divA);
 
             let text = "DOM X coords: " + x + ", Y coords: " + y;
+            //Le damos los valores random de posición a nuestra rana 
             document.getElementById("rana").style.top = y + "px"; //y -tamaño div para arriba izquierda
             document.getElementById("rana").style.left = x + "px"; //x -ancho div para arriba izquierda
 
             cont ++;
+            //Cuando el contador llegue a 3 se crea el elemento caja en la página
             if(cont==3){
                 const caja = document.createElement("img");
                 caja.setAttribute("id", "caja");
                 caja.setAttribute("src", "jumping-gatito.gif");
                 document.body.appendChild(caja);
+                //añadimos el listener en click para crecer
                 document.getElementById('caja').addEventListener('click', aumenta);
             }
             atrapa();
@@ -82,6 +86,7 @@
 
         function moverCaja(evt){
             caja = document.getElementById("caja");
+            //Creamos un switch que comprueba el código de la tecla pulsada
             switch(evt.keyCode){
                 case 87:
                     caja.style.top = ((caja.offsetTop) -10) + "px";
@@ -101,6 +106,8 @@
         function atrapa(){
             const rana = document.getElementById('rana');
             const caja = document.getElementById('caja');
+            //Creamos variables que contienen a otras donde se guarda la 
+            //posición de cada lado de las imágenes
             var rana_pos={
                 t : rana.offsetTop,
                 l : rana.offsetLeft,
@@ -114,18 +121,22 @@
                 b : caja.offsetTop + caja.clientHeight
             };
             
-
+            //Comparamos los lados de las imágenes para saber cuando la 
+            //rana se encuentra dentro.
             if(rana_pos.l>=caja_pos.l && rana_pos.r<=caja_pos.r &&
                 rana_pos.b<=caja_pos.b && rana_pos.t>=caja_pos.t){
 
                 document.getElementById('felicidades').innerHTML="felicidades has atrapado al peepoclown";
                 // clearInterval(nIntervId);
                 // nIntervId = null;
+
+                //En cuanto se atrapa lanzamos la página de Felicitación :)
                 location.href = "Felicidades.html";
             }
         }
         function aumenta(){
             caja = document.getElementById('caja');
+            //Por cada click en la caja aumenta en 25 px su ancho y alto.
             caja.style.height = (caja.clientHeight + 25) + "px";
             caja.style.width = (caja.clientWidth + 25) + "px";
         }
@@ -133,6 +144,8 @@
         //Podemos crear un contador para que cada 5 presiones de tecla la rana se mueva
         //para dar más facilidad y que no sea tan aleatorio
 
+        //Creamos un listener en toda la ventana para captar la 
+        //Pulsación de las teclas.
         window.addEventListener('keydown', moverCaja);
         
 
