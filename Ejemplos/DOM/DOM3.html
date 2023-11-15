@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM3</title>
+</head>
+<body>
+    <h1 id="id01">Ejemplo</h1>
+
+    <script>
+        //Devuelve el nombre del nodo en mayúsculas.
+        var x = document.getElementById('id01').nodeName;
+        document.write("Nombre del nodo: " + x.toLowerCase());
+
+        //Devuelve el primer hijo del nodo indicado.
+        x =  document.getElementById('id01').firstChild.nodeValue;
+        document.write("<br/>Valor del nodo: " + x);
+
+        //Devuelve el tipo del nodo en forma de número identificador
+        //(consultar api para el identificador).
+        x = document.getElementById('id01').nodeType;
+        document.write("<br/>Tipo del nodo: " + x);
+    </script>
+</body>
+</html>
