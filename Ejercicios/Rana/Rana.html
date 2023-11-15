@@ -27,7 +27,7 @@
             top: 620px;
             left: 450px;
         }
-        #img{
+        #rana{
             position: absolute;
             border: 1px solid black;
             height: 100px;
@@ -48,7 +48,7 @@
 
     <h2>Pilla al PeepoClown al salto</h2>
     <p id="felicidades"></p>
-    <img id="img" src="peepoClown.png" alt="Aquí había una foto"
+    <img id="rana" src="peepoClown.png" alt="Aquí había una foto"
     onmousemove="pageCoords(event)" onclick="felicidades(event)">
 
     <script>
@@ -66,8 +66,8 @@
             let y = Math.floor(Math.random() * divA);
 
             let text = "DOM X coords: " + x + ", Y coords: " + y;
-            document.getElementById("img").style.top = y + "px"; //y -tamaño div para arriba izquierda
-            document.getElementById("img").style.left = x + "px"; //x -ancho div para arriba izquierda
+            document.getElementById("rana").style.top = y + "px"; //y -tamaño div para arriba izquierda
+            document.getElementById("rana").style.left = x + "px"; //x -ancho div para arriba izquierda
 
             cont ++;
             if(cont==3){
@@ -81,7 +81,6 @@
         };
 
         function moverCaja(evt){
-            var
             caja = document.getElementById("caja");
             switch(evt.keyCode){
                 case 87:
@@ -100,7 +99,7 @@
             atrapa();
         }
         function atrapa(){
-            const rana = document.getElementById('img');
+            const rana = document.getElementById('rana');
             const caja = document.getElementById('caja');
             var rana_pos={
                 t : rana.offsetTop,
