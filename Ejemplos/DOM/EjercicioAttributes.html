@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>P1 Nivel 1</p>
+    <p>P2 Nivel 1 <i>I1 Nivel 2 </i></p>
+    <p>P3 Nivel 1 <i>I2 Nivel 2 </i><i>I3 Nivel 2</i></p>
+    <p>P4 Nivel 1</p>
+
+    <script>
+        var cuerpo = document.body.children;
+
+        for(var i = 0; i < cuerpo.length; i++){
+            cuerpo[i].setAttribute("style","color: blue; font-size: 1.5em; text-transform: uppercase;");
+
+            for(var j = 0; j < cuerpo[i].children.length; j++){
+                cuerpo[i].children[j].setAttribute("style", "color: red; font-size: 0.5em; text-transform: lowercase;");
+            }
+        }
+    </script>
+</body>
+</html>

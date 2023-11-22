@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>Div null</div>
+    <div class="dvi0">Div nivel 1</div>
+    <div>Div null <div>Div null </div><div class="div0">Div nivel 2</div></div>
+
+    <script>
+        var cuerpo = document.body.chilren;
+
+        for(var i = 0; i < cuerpo.length; i++){
+            if (cuerpo[i].className == "div0") {
+                cuerpo[i].setAttribute("class", "dvi1");
+            }
+
+            for(var j = 0; j < cuerpo[i].children.length; j++){
+                if (cuerpo[i].children[j].className == "div0"){
+                    cuerpo[i].children[j].setAttribute("class", "div2");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
