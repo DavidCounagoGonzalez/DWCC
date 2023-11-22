@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Canvas</title>
+    <style>
+        body{
+            margin: auto;
+            width: 500px;
+            padding: 60px;
+        }
+        </style>
+        <script type="text/javaScript">  
+
+            window.addEventListener("load",inicio)
+
+            function inicio() {
+                setInterval(actualizarHora, 1000);
+            }
+
+            function actualizarHora(){
+                var canvas = document.getElementById("reloj");
+                var ctx = canvas.getContext("2d");
+                var radio = canvas.width/2
+    
+                ctx.beginPath();
+                ctx.fillStyle="burlywood";
+                ctx.arc(radio,radio,radio,0,2*Math.PI);
+                ctx.fill();
+    
+                ctx.beginPath();
+                ctx.fillStyle="white";
+                ctx.arc(radio,radio,10,0,2*Math.PI);
+                ctx.fill();
+    
+                ctx.font = radio/10 + "px arial";
+                ctx.textAlign = "center";
+                ctx.textBaseLine = "middle";
+                for(i = 1; i<=12; i++){
+                    ctx.fillText(i,radio+radio*0.9*Math.sin(i*2*Math.PI/12), radio-(radio*0.9*Math.cos(i*2*Math.PI/12)));
+                }
+    
+                var hora = new Date().getHours();
+                var minutos = new Date().getMinutes();
+                var segundos = new Date().getSeconds();
+                var actual = hora%12+minutos/60+segundos/3600;
+    
+                var angHora = actual*2*Math.PI/12;
+                var angMin = minutos*2*Math.PI/60;
+                var angSeg = segundos*2*Math.PI/60
+    
+                ctx.strokeStyle = "white";
+                ctx.moveTo(radio,radio);
+                ctx.lineTo(radio+(radio*0.5*Math.sin(angHora)), radio-(radio*0.5*Math.cos(angHora)));
+                ctx.lineWidth = 7;
+                ctx.stroke();
+    
+                ctx.strokeStyle = "white";
+                ctx.moveTo(radio,radio);
+                ctx.lineTo(radio+(radio*0.6*Math.sin(angMin)), radio-(radio*0.6*Math.cos(angMin)));
+                ctx.lineWidth = 4;
+                ctx.stroke();
+    
+                ctx.strokeStyle = "white";
+                ctx.moveTo(radio,radio);
+                ctx.lineTo(radio+(radio*0.8*Math.sin(angSeg)), radio-(radio*0.8*Math.cos(angSeg)));
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+    
+        </script>
+</head>
+<body>
+    <div>
+        <canvas id="reloj" height="500" width="500"></canvas>
+    </div>
+    
+</body>
+</html>
