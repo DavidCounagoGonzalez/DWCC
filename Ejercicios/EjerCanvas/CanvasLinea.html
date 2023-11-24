@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerlinea</title>
+    <style>
+        body{
+            margin: auto;
+            width: 500px;
+            padding: 60px;
+        }
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        // window.addEventListener("load", dibuja);
+        var modo = false;
+
+        function dibuja (event){
+            var canvas = document.getElementById("miCanvas");
+            var ctx = canvas.getContext("2d");
+            var centro = canvas.width/2;
+
+            let x = event.clientX;
+            let y = event.clientY;
+
+            let canvX = canvas.offsetLeft;
+            let canvY = canvas.offsetTop;
+            if(modo==true){
+                ctx.fillStyle = "red";
+                ctx.fillRect((x-canvX),(y-canvY),5,5);
+            }else{
+                ctx.fillStyle = "white";
+                ctx.fillRect((x-canvX),(y-canvY),10,10);
+            }
+            
+        }
+
+    function cambiar(evt){
+        const canvas = document.getElementById("miCanvas");
+            switch(evt.keyCode){
+            case 68:
+                canvas.addEventListener("mousemove", dibuja);
+                modo = true;
+                break;
+            case 66:
+                modo = false;
+                break;
+        }
+    }
+
+    window.addEventListener("keydown", cambiar);
+    </script>
+</head>
+<body>
+    <div>
+        <canvas id="miCanvas" height="500px" width="500px" onmousemove="dibuja(event)"></canvas>
+    </div>
+</body>
+</html>

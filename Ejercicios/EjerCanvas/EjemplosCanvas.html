@@ -7,27 +7,29 @@
     <title>Ejemplos Canvas</title>
     <style>
         body{
-            
+            margin: auto;
             width: 500px;
-            
+            padding: 60px;
         }
         canvas{
             border: 1px solid black;
         }
     </style>
     <script>
-        //window.addEventListener("load", dibuja);
         
-
         function dibuja (event){
             var canvas = document.getElementById("miCanvas");
             var ctx = canvas.getContext("2d");
             var centro = canvas.width/2;
+
             let x = event.clientX;
             let y = event.clientY;
+
+            let canvX = canvas.offsetLeft;
+            let canvY = canvas.offsetTop;
             
             ctx.fillStyle = "red";
-            ctx.fillRect(x,y,1,1);
+            ctx.fillRect((x-canvX),(y-canvY),1,1);
         }
     </script>
 </head>
