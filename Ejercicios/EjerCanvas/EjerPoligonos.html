@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: auto;
+            width: 500px;
+            padding: 60px;
+        }
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", crear);
+
+        function crear(){
+            const canvas = document.getElementById("miCanvas");
+            const ctx = canvas.getContext('2d');
+
+            const xi = (Math.random()*canvas.width);
+                    const yi =  (Math.random()*canvas.height);
+            
+            ctx.strokeStyle='black';
+            for(i=0; i<9; i++){
+                if(i==1){
+                    ctx.moveTo(xi, yi);
+                }else if(i==8){
+                    ctx.lineTo(xi, yi);
+                }else{
+                    ctx.lineTo((Math.random()*canvas.width), (Math.random()*canvas.height));
+                }
+            }
+            ctx.lineWidth=2;
+            ctx.stroke();
+            
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <canvas id="miCanvas" width="500px" height="500px"></canvas>
+    </div>
+</body>
+</html>

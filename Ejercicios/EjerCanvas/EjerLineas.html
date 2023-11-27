@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibuja Lineas</title>
+    <style>
+        body{
+            margin: auto;
+            width: 500px;
+            padding: 60px;
+        }
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        // window.addEventListener("load", incio);
+        var cont = 0;
+
+        // function incio(){
+        //     const canvas = document.getElementById("miCanvas");
+        //     const ctx = canvas.getContext("2d");
+        //     const centro = canvas.width/2;
+
+        //     ctx.strokeStyle='red';
+        //     ctx.moveTo(centro, centro);
+        //     ctx.lineTo(centro+100, centro);
+        //     ctx.lineWidth=5;
+        //     ctx.stroke();
+        // }
+
+        function crear(event){
+            const coordX = document.getElementById("coordX");
+            const coordY = document.getElementById("cooedY");
+            const canvas = document.getElementById("miCanvas");
+            const ctx = canvas.getContext("2d");
+
+            let x = canvas.offsetLeft;
+            let y = canvas.offsetTop;
+
+            ctx.strokeStyle = 'black';
+            ctx.moveTo(100 - x, 100 - y)
+            ctx.lineTo(200-x, 100 - y);     
+            ctx.lineWidth=2;
+            ctx.stroke();
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <canvas id="miCanvas" width="500px" height="500px"></canvas>
+        <input type="text" id="coordX">
+        <input type="text" id="coordY">
+        <button id="crear" onclick="crear(event)">Crear</button>
+    </div>
+</body>
+</html>
