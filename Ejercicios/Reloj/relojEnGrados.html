@@ -19,54 +19,49 @@
         window.addEventListener("load", inicio);
 
         function inicio(){
-            crea();
-            intervalo = setInterval(mueveguja, 1000);
+            intervalo = setInterval(crea, 1000);
         }
+        var angulo = 0;
+        var div;
+        var x;
+        var y;
          function crea(){
             const canvas = document.getElementById("reloj")
             const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             var radio = canvas.width/2;
             ctx.beginPath();
-            ctx.strokeStyle = "red";
+            ctx.strokeStyle = "lightblue";
             ctx.lineWidth = 2;
             ctx.arc(radio, radio, radio, Math.PI*2, 0);
             ctx.stroke();
             for(i=0; i<360; i = i+30){
-                const div = i*Math.PI/180;
+                div = i*Math.PI/180;
                 
                 ctx.beginPath();
                 ctx.strokeStyle = "blue";
-                var x = radio+(radio*Math.sin(div));
-                var y = radio-(radio*Math.cos(div));
-                console.log(x + " " + y + " " + angulo);
+                x = radio+(radio*Math.sin(div));
+                y = radio-(radio*Math.cos(div));
                 ctx.moveTo(x-2, y-2);
                 ctx.lineTo(x,y);
                 ctx.lineWidth = 2;
                 ctx.stroke();
 
             }
-            
-            
-        }
-        var angulo = 0;
-        function mueveguja(){
-            const canvas = document.getElementById("reloj");
-            const ctx = canvas.getContext('2d');
-            var radio = canvas.width/2;
 
-            const div = angulo*Math.PI/180;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            div = angulo*Math.PI/180;
+            x = radio+(radio*Math.sin(div));
+            y = radio-(radio*Math.cos(div));
             ctx.beginPath();
             ctx.strokeStyle = "black";
-            var x = radio+(radio*Math.sin(div));
-            var y = radio-(radio*Math.cos(div));
             ctx.moveTo(radio, radio);
             ctx.lineTo(x,y);
-            angulo += 30;
             ctx.stroke();
             ctx.closePath();
             
+            angulo += 30;
         }
+        
     </script>
 </head>
 <body>
