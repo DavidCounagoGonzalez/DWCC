@@ -35,18 +35,21 @@
             ctx.lineWidth = 2;
             ctx.arc(radio, radio, radio, Math.PI*2, 0);
             ctx.stroke();
+
+            ctx.font = "12px arial";
+            ctx.textAlign = "center";
+            ctx.textBaseLine = "middle";
+            var hora = 0;
             for(i=0; i<360; i = i+30){
                 div = i*Math.PI/180;
-                
-                ctx.beginPath();
-                ctx.strokeStyle = "blue";
-                x = radio+(radio*Math.sin(div));
-                y = radio-(radio*Math.cos(div));
-                ctx.moveTo(x-2, y-2);
-                ctx.lineTo(x,y);
-                ctx.lineWidth = 2;
-                ctx.stroke();
-
+                x = radio+(radio*0.9*Math.sin(div));
+                y = radio-(radio*0.9*Math.cos(div));
+                if(hora==0){
+                    ctx.fillText('12',x,y)
+                }else{
+                ctx.fillText(hora,x,y)
+                }
+                hora++;
             }
 
             div = angulo*Math.PI/180;
