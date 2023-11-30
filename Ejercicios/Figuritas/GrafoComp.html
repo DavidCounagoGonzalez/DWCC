@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafo Completo</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+
+        window.addEventListener("keypress", (e) =>{
+            if(e.key === 'Enter'){
+                crear();
+            }
+        });
+
+        function crear(){
+          if(document.getElementById('Rectángulo').checked){
+            console.log('rect');
+          }else if(document.getElementById('Pentágono').checked){
+            console.log('pent');
+          }else if(document.getElementById('Hexágono').checked){
+            console.log('hex');
+          }else if(document.getElementById('otros').checked){
+            console.log('otros');
+          }else{
+            console.log('Adios');
+          }
+        }
+    </script>
+</head>
+<body>
+    <h2>Grafo Completo</h2>
+    <div>
+        <canvas id="miCanvas" width="500px" height="500px"></canvas>
+    </div>
+    <fieldset id="opciones">
+        <input type="radio" class="opcion" id="Rectángulo">
+        <label for="Rectángulo">Rectángulo</label>
+        <br>
+        <input type="radio" class="opcion" id="Pentágono">
+        <label for="Pentágono">Pentágono</label>
+        <br>
+        <input type="radio" class="opcion" id="Hexágono">
+        <label for="Hexágono">Hexágono</label>
+        <br>
+        <input type="radio" class="opcion" id="otros">
+        <label for="otros">Otros : </label>
+        <input type="number" id="numero">
+    </fieldset>
+    
+</body>
+</html>
