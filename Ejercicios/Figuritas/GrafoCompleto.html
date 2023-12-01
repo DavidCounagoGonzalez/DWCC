@@ -11,7 +11,7 @@
         }
     </style>
     <script>
-
+        //Evento tras presionar el enter 
         window.addEventListener("keypress", (e) =>{
             if(e.key === 'Enter'){
                 crear();
@@ -19,32 +19,35 @@
         });
 
         function crear(){
+          //Llamamos al canva y aplicamos 2d
           const canvas = document.getElementById("miCanvas");
           const ctx = canvas.getContext('2d');
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);//En cada presión se limpia
           ctx.beginPath();
 
           const radio = canvas.width/2;
           var vertices;
           var puntos = new Array();
           var place = new Array();
+          //IF ELSE que detecta el radioButton Marcado.
           if(document.getElementById('Rectángulo').checked){
-            
+            //Pasamos los vertices de la figura
             vertices = 4;
             for(i=0; i<vertices; i++){
+              //Calculamos x e y en el bucle for
                 x = radio+(radio*0.8*Math.sin(i*90*Math.PI/180));
                 y = radio-(radio*0.8*Math.cos(i*90*Math.PI/180));
                 ctx.strokeStyle = "red";
                 ctx.fillRect(x-2.5, y-2.5, 5, 5);
                 ctx.stroke();
-
+                //Guardamos los puntos en un placeHolder y este en el array Puntos.
                 place.push(x);
                 place.push(y);
                 puntos.push(place);
-                place = [];
+                place = [];//Vaciamos el PlaceHolder
 
             }
-
+            //Doble bucle for para recoger el punto de partida y su direccionamiento.
             for(j=0; j<puntos.length; j++){
               for(z=0; z<puntos.length-j; z++){
                 ctx.moveTo(puntos[j][0], puntos[j][1]);
@@ -124,7 +127,7 @@
               }
             }
           }else{
-            console.log('Adios');
+            console.log('Marca Algo');
           }
           ctx.closePath();
         }
