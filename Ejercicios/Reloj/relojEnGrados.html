@@ -38,8 +38,8 @@
             ctx.textAlign = "center";
             ctx.textBaseLine = "middle";
             var hora = 0;
-            for(i=0; i<360; i = i+30){
-                div = i*Math.PI/180;
+            for(i=0; i<12; i++){
+                div = i*30*Math.PI/180;
                 x = radio+(radio*0.8*Math.sin(div));
                 y = radio-(radio*0.8*Math.cos(div));
                 if(hora==0){

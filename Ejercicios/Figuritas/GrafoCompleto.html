@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafo Completo</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+
+        window.addEventListener("keypress", (e) =>{
+            if(e.key === 'Enter'){
+                crear();
+            }
+        });
+
+        function crear(){
+          const canvas = document.getElementById("miCanvas");
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.beginPath();
+
+          const radio = canvas.width/2;
+          var vertices;
+          var puntos = new Array();
+          var place = new Array();
+          if(document.getElementById('Rectángulo').checked){
+            
+            vertices = 4;
+            for(i=0; i<vertices; i++){
+                x = radio+(radio*0.8*Math.sin(i*90*Math.PI/180));
+                y = radio-(radio*0.8*Math.cos(i*90*Math.PI/180));
+                ctx.strokeStyle = "red";
+                ctx.fillRect(x-2.5, y-2.5, 5, 5);
+                ctx.stroke();
+
+                place.push(x);
+                place.push(y);
+                puntos.push(place);
+                place = [];
+
+            }
+
+            for(j=0; j<puntos.length; j++){
+              for(z=0; z<puntos.length-j; z++){
+                ctx.moveTo(puntos[j][0], puntos[j][1]);
+                ctx.lineTo(puntos[z+j][0], puntos[z+j][1]);
+                ctx.stroke();
+              }
+            }
+            
+          }else if(document.getElementById('Pentágono').checked){
+            vertices = 5;
+            for(i=0; i<vertices; i++){
+                angulo = 360/vertices;
+                x = radio+(radio*0.8*Math.sin(i*angulo*Math.PI/180));
+                y = radio-(radio*0.8*Math.cos(i*angulo*Math.PI/180));
+                ctx.strokeStyle = "red";
+                ctx.fillRect(x-2.5, y-2.5, 5, 5);
+                ctx.stroke();
+
+                place.push(x);
+                place.push(y);
+                puntos.push(place);
+                place = [];
+            }
+
+            for(j=0; j<puntos.length; j++){
+              for(z=0; z<puntos.length-j; z++){
+                ctx.moveTo(puntos[j][0], puntos[j][1]);
+                ctx.lineTo(puntos[z+j][0], puntos[z+j][1]);
+                ctx.stroke();
+              }
+            }
+
+          }else if(document.getElementById('Hexágono').checked){
+            vertices = 6;
+            for(i=0; i<vertices; i++){
+                angulo = 360/vertices;
+                x = radio+(radio*0.8*Math.sin(i*angulo*Math.PI/180));
+                y = radio-(radio*0.8*Math.cos(i*angulo*Math.PI/180));
+                ctx.strokeStyle = "red";
+                ctx.fillRect(x-2.5, y-2.5, 5, 5);
+                ctx.stroke();
+
+                place.push(x);
+                place.push(y);
+                puntos.push(place);
+                place = [];
+            }
+
+            for(j=0; j<puntos.length; j++){
+              for(z=0; z<puntos.length-j; z++){
+                ctx.moveTo(puntos[j][0], puntos[j][1]);
+                ctx.lineTo(puntos[z+j][0], puntos[z+j][1]);
+                ctx.stroke();
+              }
+            }
+          }else if(document.getElementById('otros').checked){
+            vertices = document.getElementById('numero').value;
+            for(i=0; i<vertices; i++){
+                angulo = 360/vertices;
+                x = radio+(radio*0.8*Math.sin(i*angulo*Math.PI/180));
+                y = radio-(radio*0.8*Math.cos(i*angulo*Math.PI/180));
+                ctx.strokeStyle = "red";
+                ctx.fillRect(x-2.5, y-2.5, 5, 5);
+                ctx.stroke();
+
+                place.push(x);
+                place.push(y);
+                puntos.push(place);
+                place = [];
+            }
+
+            for(j=0; j<puntos.length; j++){
+              for(z=0; z<puntos.length-j; z++){
+                ctx.moveTo(puntos[j][0], puntos[j][1]);
+                ctx.lineTo(puntos[z+j][0], puntos[z+j][1]);
+                ctx.stroke();
+              }
+            }
+          }else{
+            console.log('Adios');
+          }
+          ctx.closePath();
+        }
+    </script>
+</head>
+<body>
+    <h2>Grafo Completo</h2>
+    <div>
+        <canvas id="miCanvas" width="500px" height="500px"></canvas>
+    </div>
+    <fieldset id="opciones">
+        <input type="radio" name="opcion" id="Rectángulo">
+        <label for="Rectángulo">Rectángulo</label>
+        <br>
+        <input type="radio" name="opcion" id="Pentágono">
+        <label for="Pentágono">Pentágono</label>
+        <br>
+        <input type="radio" name="opcion" id="Hexágono">
+        <label for="Hexágono">Hexágono</label>
+        <br>
+        <input type="radio" name="opcion" id="otros">
+        <label for="otros">Otros : </label>
+        <input type="number" id="numero">
+    </fieldset>
+    
+</body>
+</html>
