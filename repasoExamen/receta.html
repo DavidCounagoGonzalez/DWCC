@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        div {
+            width: 50%;
+            border: dotted 2px pink;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+    <script>
+
+        
+
+        var recetaPan = ['harina', 'sal', 'levadura', 'agua']; // 1
+        var recetaBincocho = ['harina', 'huevo', 'azucar', 'sal', 'levadura']; //2
+        var recetaGalleta = ['harina', 'agua', 'azucar', 'mantequilla', 'sal']; //3
+        var recetas= [recetaPan, recetaBincocho, recetaGalleta];
+
+
+
+        function fagregar() {
+            nuevoIngre = document.createElement('li');
+            nuevoIngre.textContent = document.getElementById("txtingredientes").value;
+            document.getElementById('lista').appendChild(nuevoIngre);
+        }
+        function frecetas() {
+            var ingre = [];
+            const ingredientes = document.getElementById('lista');
+            var ingrediente = ingredientes.firstElementChild;
+            for (let i = 0; i < ingredientes.childElementCount; i++) {
+                ingre[i] = ingrediente.textContent;
+                ingrediente = ingrediente.nextElementSibling;
+            }
+            console.log(ingre);
+
+            const c = document.getElementById('lista').children;
+
+            op = parseInt(document.querySelector('input[name="recepy"]:checked').value);
+                    for (let i = 0; i < ingre.length; i++) {
+                        for (let j = 0; j < recetas[op].length; j++) {
+                            console.log(recetas[op][j] + " " + ingre[i]);
+                            if (recetas[op][j] === ingre[i]) {
+                                c.item(i).setAttribute('style', 'color:green;');
+                            }
+                        }
+                    }
+        
+        }
+    </script>
+</head>
+
+<body>
+    <div id="ingredientes">
+        <ul id="lista">
+            <li>harina</li>
+            <li>huevo</li>
+            <li>leche</li>
+            <li>levadura</li>
+            <li>sal</li>
+        </ul>
+        <p><input type="text" id="txtingredientes"></p>
+        <p><button id="btningredientes" onclick="fagregar()">Agregar ingredientes</button></p>
+    </div>
+    <div id="receta">
+        <p><input type="radio" name="recepy" value="0" checked>Pan</p>
+        <p><input type="radio" name="recepy" value="1">Bizcocho</p>
+        <p><input type="radio" name="recepy" value="2">Galletas</p>
+        <p><button id="btnreceta" onclick="frecetas()">Comprobar</button></p>
+    </div>
+
+</body>
+
+</html>

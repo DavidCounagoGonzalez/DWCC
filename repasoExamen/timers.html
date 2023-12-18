@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    
+</head>
+<body >
+    <h1 id="encabezado">Jugando con Timer y propiedades</h1>
+    <p id="phora"></p>
+    <p><button id="btnparar" onmouseover="clearInterval(reloj)">parar</button></p>
+    <p><button id="btnreanudar" onclick="setInterval(freloj,1000)">reanudar</button> </p>
+    <p><input type="text" id="mes" placeholder="mes"></p>
+    <p><input type="text" id="dia" placeholder="dia"></p>
+    <p><input type="text" id="ano" placeholder="año"></p>
+    <p><button id="btndiferencia" onclick="fdiferencia()">Diferencia</button></p>
+
+    <script>
+           var reloj = setInterval(freloj,1000);
+        setTimeout( ()=>{
+            document.getElementById('encabezado').style.color= "green";
+        }, 500);
+
+        
+        function freloj(){
+            var op = {hour12:false};    
+
+
+            document.getElementById('phora').innerHTML = new Date().toLocaleTimeString( 'en-US');
+            document.getElementById('phora').style.color = 'red';
+      
+        }
+
+        function fdiferencia (){
+            d = parseInt(document.getElementById('dia').value) ;
+            m = parseInt(document.getElementById('mes').value) ;
+            a = parseInt(document.getElementById('ano').value);
+            var fAnterir = new Date(a +"-"+m+"-"+d);
+            console.log(fAnterir);
+            var fecha =  new Date();
+            let dif = fecha-fAnterir;
+            dt = parseInt (dif/ (1000*60*60*24)) ;
+            aa = parseInt( dt/365);
+            mm =  parseInt(dt%365/30);
+            dd = parseInt(dt%365%30);
+            console.log('Años: ' + aa + ", meses: " + mm + ", dias "+ dd);
+        }
+    </script>
+</body>
+</html>

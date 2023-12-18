@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen DCC</title>
+    <style>
+        label{
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        var cont = 0;
+        var opcion;
+
+        function compara(a, b){ //FUnción para que sort recoge todo el número y no solo el primero
+            return a - b;
+        }
+
+
+        function inicio(operacion){
+            const caja = document.getElementById('caja'); //Recogemos el elemeno caja que mostrará los resultados
+            const tipo = document.getElementsByName('tipo'); //LOs elemntos de clase tipo son la opción que se escoge para la salida
+
+            for (let i = 0; i < tipo.length; i++) {//REcorremos los elementos tipo y el que esté checked guarda su valor como opción.
+                if(tipo[i].checked){
+                    opcion = tipo[i].value;
+                }
+            }
+
+            if(cont == 1){
+                while(caja.firstChild){
+                    caja.removeChild(caja.firstChild); //Borrado tras un uso del programa de todos los elementos resultado
+                }
+            }
+
+            var valores = document.getElementById('kelvins').value.split(','); //Spliteamos los valores dados por , y los guardamos en un array
+
+            if(document.getElementById('ascendente').checked){
+               valores.sort(compara); //Si el checkbox ascendente  está marcado reordenamos el array
+            }
+
+            valores.forEach(valor => {
+                if(valor<0){
+                    alert('Uno de los valores introducidos es negativo'); //Si el valor es negativo no hace nada
+                }
+                else{
+                    if(operacion === 'cel'){ //Dependiendo de la operacion recibida en el parametro de la función dada por el onmouseover de las labels realizados una conversión u otra.
+                        valor = valor - 273.15;
+                    }else{
+                        valor = 1.8*(valor-273.15)+32;
+                    }
+                    //Creamos los elementos necesarios 
+                    const br = document.createElement('br');
+                    var newSpan = document.createElement('span');
+                    var newCont = document.createTextNode(Math.round(valor)); //Guardamos cada valor en un textNode que añadimos a un span
+                    newSpan.setAttribute('class', 'resultados');
+                    newSpan.appendChild(newCont);
+
+                    if(opcion === "alto"){ //Si es alto la opción colocamos añadimos un estilo de color blanco y fondo negro
+                        newSpan.setAttribute('style', "color:white; background-color:black;");
+                    }else{ //Dependiendo del tamaño de valor se le aplica un color u otro al span 
+                        if(valor<0){
+                            newSpan.setAttribute('style', "color:purple;");
+                        }else if (valor<=100){
+                            newSpan.setAttribute('style', "color:blue;");
+                        }else if (valor<=200){
+                            newSpan.setAttribute('style', "color:green;");
+                        }else if(valor<=300){
+                            newSpan.setAttribute('style', "color:yellow;");
+                        }else if(valor<=400){
+                            newSpan.setAttribute('style', "color:orange;");
+                        }else{
+                            newSpan.setAttribute('style', "color:red;");
+                        }
+                    }
+                    
+                    caja.appendChild(br);
+                    caja.appendChild(newSpan);
+                    cont = 1;
+                }
+                
+            });
+        }
+    </script>
+</head>
+<body>
+        Kelvin <input type="text" id="kelvins">
+        <br>
+        <input type="checkbox" id="ascendente"> Ascendente
+        <br>
+        <input type="radio" name="tipo" value="color">Color
+        <input type="radio" name="tipo" value="alto" checked>Alto Contraste
+        <br>
+        <label id="celsius" onmouseover="inicio('cel')">Celsius</label>
+        <label id="Farenheit" onmouseover="inicio('far')">Farenheit</label>
+    <div id="caja"></div>
+</body>
+</html>

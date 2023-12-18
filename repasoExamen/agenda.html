@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <style>
+        body {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #datos,
+        #busqueda {
+            width: 50%;
+            height: auto;
+            border: solid 1px green;
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        const EA = 10; // constante que definirá el número de entras máximo de la agenda 
+        const CA = 3; // campos que tendrá cada registro agenda
+        var persona = Array(EA); // creamos el array personas  
+        for (let i = 0; i < persona.length; i++) {
+            persona[i] = new Array(CA); // creamos en cada posición 3 más para los datos
+        }
+        var resultado; // almacenará el resultado de la búsqueda de registros
+        var cnt = 0; // contará las posiciones usadas en la agenda 
+
+        /*Esta función dados unos inmputo donde se rellenarán los datos gurada un registro en la 
+        agenda */
+        function fsave() {
+
+            if (cnt<EA) { // lo hacemos mientras haya huecos en la agenda 
+            // guardamos datos de los impuntos en su posición corrrespondiente
+            persona[cnt][0] = document.getElementById('inpName').value;
+            persona[cnt][1] = document.getElementById('inpEmail').value;
+            persona[cnt][2] = document.getElementById('inpAge').value;
+            cnt ++; // incrementamos la posición ya que hemos quemado un registro 
+            } else{
+                alert('Agenda llena'); // emitimos alerta de agenda completa 
+            }
+        }
+
+        /*Esta función visualiza todos los datos guardados en la agenda */
+        function fView() {
+
+            resultado = ""; // inicalizamos resultado 
+            // recorremos los registros cubiertos de la agenda 
+            for (let i = 0; i < cnt; i++) {
+                resultado += "--";
+                for (let j = 0; j < persona[i].length; j++) {
+                    resultado = resultado + persona[i][j] + " "; 
+                    // y vamos almacenandolos en la variable que nos los mostrará todos
+                }
+                resultado = resultado + '\n'; // añadimos salto de línea por estética
+
+            }
+            document.getElementById('txtaData').innerHTML = resultado;
+            // los mostramos en el texte área
+        }
+
+        /*Esta función nos permitirá buscar un agendado por uno de sus campos y mostrarlo*/
+        function fsearch() {
+            op = parseInt(document.querySelector('input[name="opbusqueda"]:checked').value);
+            /* guardomos op de búsqueda, le asignamos valores int para que luego coincidan 
+            con posición de búsqueda en el array */
+            dato = document.getElementById('inpbusqueda').value; // elemento a buscar
+            
+            for (let i = 0; i < cnt; i++) { // recorremos la agenda según completada
+                for (let j = 0; j < persona[i].length; j++) {
+                    if (persona[i][op] == dato) { // si el dato de la opción seleccionada 
+                        // de búsqueda conincide con el dato a buscar 
+                       console.log(persona[i][j]);
+                        busqueda += persona[i][j] + " "; // asignamos valor a la variable de búsqueda
+                 
+                    }
+                }
+            }
+            document.getElementById('txtaData').innerHTML = busqueda // mostramos en el textarea
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="datos">
+        <p><label for="inpName">Nombre: </label><input type="text" id="inpName" required></p>
+        <p><label for="inpEmail">Email: </label><input type="email" id="inpEmail" required></p>
+        <p><label for="inpAge">Edad: </label><input type="number" id="inpAge" required></p>
+        <p><button id="btnSave" onclick="fsave()"> Guardar</button></p>
+        <p><button id="btnView" onclick="fView()"> Ver Registros</button></p>
+        <textarea name="txtaData" id="txtaData" cols="30" rows="10"></textarea>
+    </div>
+    <div id="busqueda">
+        <h1>Datos de Búsqueda</h1>
+        <p><input type="radio" name="opbusqueda" id="opname" value="0" checked>Nombre</p>
+        <p><input type="radio" name="opbusqueda" id="opemail" value="1">Email</p>
+        <p><input type="radio" name="opbusqueda" id="opage" value="2">Edad</p>
+        <p><input type="text" id="inpbusqueda" required></p>
+        <p><button id="btnSearch" onclick="fsearch()">Buscar</button></p>
+    </div>
+
+</body>
+
+</html>
