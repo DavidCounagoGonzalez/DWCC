@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function Persona(nombre, apellido, edad){
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.edad = edad;
+            this.sueldo = 0;
+            this.setSueldo = function (factor){
+                this.sueldo = 800 * factor;
+            };
+            this.datos = function() {
+                return this.nombre + " " + 
+                this.apellido + " " + 
+                this.edad + " " +
+                this.sueldo;
+            };
+        }
+
+        var empleado = new Persona ("Pepe", "Pérez", 25);
+        empleado.setSueldo(3);
+
+        document.write(empleado.datos());
+
+    </script>
+</body>
+</html>

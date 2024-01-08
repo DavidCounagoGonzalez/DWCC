@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="p01"></p>
+
+    <script>
+        // var persona = {
+        //     nombre : "Pepe",
+        //     apellido : "Pérez",
+        //     id : "",
+        //     set identificador(id){
+        //         this.id = id;
+        //     },
+        //     get identificador(){
+        //         return this.id;
+        //     }
+        // };
+
+        // persona.identificador = 123;
+        // document.write(persona.identificador);
+
+        var obj = {counter : 0};
+
+        Object.defineProperty(obj, "reset", {
+            get : function () {this.counter = 0;}
+        });
+        Object.defineProperty(obj, "incrementar", {
+            get : function() {this.counter++;}
+        });
+        Object.defineProperty(obj, "decrementar", {
+            get : function() {this.counter --}
+        });
+        Object.defineProperty(obj, "add", {
+            set : function(value) {this.counter += value;}
+        });
+        Object.defineProperty(obj, "restar", {
+            set : function(value) {this.counter -= value;}
+        });
+
+        obj.reset;
+        obj.add = 5;
+        obj.restar = 1;
+        obj.incrementar;
+        obj.decrementar;
+
+        document.getElementById("p01").innerHTML = obj.counter;
+    </script>
+</body>
+</html>

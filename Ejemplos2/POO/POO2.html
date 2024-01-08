@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación Orientada a Objetos</title>
+</head>
+<body>
+    <script>
+        var persona = {
+            nombre : "Pepe",
+            apellido : "Pérez",
+            id : 123,
+            nombreCompleto : function() {
+                return this.nombre + " " + this.apellido;
+            }
+        };
+
+        persona.nacionalidad = "española";
+        persona.sueldo = function(){
+            return 3.5 * 500;
+        };
+        delete persona.id;
+        delete persona.nombreCompleto;
+
+        for (x in persona){
+            document.write(persona[x] + " ");
+        }
+    </script>
+</body>
+</html>
