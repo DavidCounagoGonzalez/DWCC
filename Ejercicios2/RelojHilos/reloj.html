@@ -16,12 +16,17 @@
         }
     </style>
     <script> 
-        window.addEventListener("load", cambioZona);
+        window.addEventListener("load", inicio);
+        var activador;
+
+        function inicio(){
+            activador = new Worker("horas.js");
+            cambioZona();
+        }
 
         function cambioZona(){
             var resultado = document.getElementById('horaPais');
-            var activador = new Worker("horas.js");
-
+            
             activador.onmessage = function(event){
                 var opcion = document.querySelector('input[name="pais"]:checked').value;
                 var horaCompleta = event.data;
