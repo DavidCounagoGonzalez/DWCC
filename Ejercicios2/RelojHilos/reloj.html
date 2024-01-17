@@ -40,6 +40,10 @@
                 if(horaCompleta.hora > 23){
                     horaCompleta.hora -= 24;
                 }
+
+                horaCompleta.hora = (horaCompleta.hora < 10 ? '0' : '') + horaCompleta.hora;
+                horaCompleta.minutos = (horaCompleta.minutos < 10 ? '0' : '') + horaCompleta.minutos;
+                horaCompleta.segundos = (horaCompleta.segundos < 10 ? '0' : '') + horaCompleta.segundos;
                 
                 resultado.innerHTML = horaCompleta.hora + ":" + horaCompleta.minutos + ":" + horaCompleta.segundos;
             }
@@ -61,7 +65,7 @@
     </div>
 
     <div class="horas">
-        <p id="horaPais">Esta es la Hora</p>
+        <p id="horaPais"></p>
     </div>
 </body>
 </html>
