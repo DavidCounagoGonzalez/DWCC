@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Paises</title>
+    <style>
+        .horas{
+            border: 2px solid black;
+            margin-top: 200px;
+            margin-left: 30%;
+            text-align: center;
+            font-size: 50px;
+            width: 500px;
+        }
+    </style>
+    <script> 
+        window.addEventListener("load", cambioZona);
+
+        function cambioZona(){
+            var resultado = document.getElementById('horaPais');
+            var activador = new Worker("horas.js");
+
+            activador.onmessage = function(event){
+                var opcion = document.querySelector('input[name="pais"]:checked').value;
+                var horaCompleta = event.data;
+                switch(opcion){
+                    case "Madrid":
+                        horaCompleta.hora += 1;
+                        break;
+                    case "NY":
+                        horaCompleta.hora += 5;
+                        break;
+                    case "Tokyo":
+                        horaCompleta.hora += 9;
+                        break;
+                }
+
+                if(horaCompleta.hora > 23){
+                    horaCompleta.hora -= 24;
+                }
+                
+                resultado.innerHTML = horaCompleta.hora + ":" + horaCompleta.minutos + ":" + horaCompleta.segundos;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="opciones">
+        <h2>Selecciona un país: </h2>
+        <input type="radio" name="pais" id="Madrid" value="Madrid" onclick="cambioZona()">
+        <label for="Madrid">Madrid</label>
+        <br>
+        <input type="radio" name="pais" id="NY" value="NY" onclick="cambioZona()">
+        <label for="NY">Nueva York</label>
+        <br>
+        <input type="radio" name="pais" id="Tokyo" value="Tokyo" onclick="cambioZona()">
+        <label for="Tokyo">Tokyo</label>
+        <br>
+    </div>
+
+    <div class="horas">
+        <p id="horaPais">Esta es la Hora</p>
+    </div>
+</body>
+</html>
