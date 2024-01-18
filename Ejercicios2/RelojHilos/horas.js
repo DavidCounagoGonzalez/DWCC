@@ -6,7 +6,6 @@ function horaActual(){
     horaCompleta.hora = fecha.getUTCHours();
     horaCompleta.minutos =fecha.getUTCMinutes();
     horaCompleta.segundos =fecha.getUTCSeconds();
-
     postMessage(horaCompleta);
     setTimeout("horaActual()", 1000);
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{
+            display: flex;
+            flex-direction: row;
+        }
+        .conts{
+            border: 2px solid black;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button{
+            width: 50px;
+        }
+        #para{
+            width: 300px;
+            height: 50px;
+            margin-left: 150px;
+        }
+    </style>
+    <script>
+        activador1 = new Worker("velocidad1.js");
+        activador2 = new Worker("velocidad2.js");
+        function cambia(velocMas, accion){
+            if(velocMas == 1){
+                if(accion == 'suma'){
+                    activador1.postMessage('suma');
+                }else{
+                    activador1.postMessage('resta');
+                }
+            }else{
+                if(accion == 'suma'){
+                    activador2.postMessage('suma');
+                }else{
+                    activador2.postMessage('resta');
+                }
+            }
+        }
+
+        activador1.onmessage = function(event){
+            document.getElementById('valor1').innerHTML = event.data;
+        }
+        activador2.onmessage = function(event){
+            document.getElementById('valor2').innerHTML = event.data;
+        }
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div class="conts">
+            <p>Velocidad 1</p>
+            <div class="botones">
+                <button onclick="cambia(1, 'suma')">+</button>
+                <button onclick="cambia(1, 'resta')">-</button>
+            </div>
+            <p id="valor1"></p>
+        </div>
+        <div class="conts">
+            <p>Velocidad 2</p>
+            <div class="botones">
+                <button onclick="cambia(2, 'suma')">+</button>
+                <button onclick="cambia(2, 'resta')">-</button>
+            </div>
+            <p id="valor2"></p>
+        </div>
+    </div>
+    <button id="para" onclick="para()">Parar</button>
+</body> 
+</html>
