@@ -30,6 +30,13 @@
     <script>
         activador1 = new Worker("velocidad1.js");
         activador2 = new Worker("velocidad2.js");
+
+        window.addEventListener("load", inicio);
+
+        function inicio(){
+            document.getElementById("valor1").innerHTML = "Hola";
+        }
+
         function cambia(velocMas, accion){
             if(velocMas == 1){
                 if(accion == 'suma'){
@@ -45,12 +52,14 @@
                 }
             }
         }
-
-        activador1.onmessage = function(event){
-            document.getElementById('valor1').innerHTML = event.data;
+        
+        activador1.onmessage = function(event1){
+            valor1 = event1.data;
+            document.getElementById('valor1').innerHTML = valor1;
         }
-        activador2.onmessage = function(event){
-            document.getElementById('valor2').innerHTML = event.data;
+        activador2.onmessage = function(event2){
+            valor2 = event2.data;
+            document.getElementById('valor2').innerHTML = valor2;
         }
     </script>
 </head>

@@ -1,7 +1,9 @@
 var numero = 0;
 var tiempo = 500;
 function cuenta(){
-    postMessage = numero+1
+
+    numero +=1;
+    postMessage(numero);
 
     onmessage = function(event){
         if(event.data == 'suma'){
