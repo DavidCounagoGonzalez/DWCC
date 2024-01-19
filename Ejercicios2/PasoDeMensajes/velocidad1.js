@@ -1,18 +1,18 @@
 var numero = 0;
 var tiempo = 500;
-function cuenta(){
-    //console.log(numero);
-    numero += 1;
-    postMessage(numero);
-    onmessage = function(event){
-        if(event.data == 'suma'){
-            tiempo -= 100;
-        }else{
-            tiempo += 100;
-        }
+onmessage = function(event){
+    if(event.data == 'suma'){
+        tiempo -= 100;
+    }else{
+        tiempo += 100;
     }
-    
+}
 
+function cuenta(){
+    numero += 1;
+    console.log(numero);
+    postMessage(numero);
+    
     setTimeout("cuenta()", tiempo);
 }
 

@@ -14,13 +14,13 @@
         .conts{
             border: 2px solid black;
             width: 300px;
-            height: 400px;
+            height: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         button{
-            width: 50px;
+            width: 75px;
         }
         #para{
             width: 300px;
@@ -30,10 +30,37 @@
         }
     </style>
     <script>
-        activador1 = new Worker("velocidad1.js");
-        activador2 = new Worker("velocidad2.js");
+        var activador1;
+        var activador2;
 
+        function inicio1(){
+            
+            return activador1 = new Worker("velocidad1.js");
+        }
+
+        function inicio2(){
+            
+            return activador2 = new Worker("velocidad2.js");
+        }
+
+        window.addEventListener('load', inicio);
+
+        function inicio(){
+            activador1 = inicio1();
+            activador2 = inicio2();
+
+            activador1.onmessage = function(event1){
+            valor1 = event1.data;
+            document.getElementById('valor1').innerHTML = valor1;
+        }
+            activador2.onmessage = function(event2){
+            valor2 = event2.data;
+            document.getElementById('valor2').innerHTML = valor2;
+        }
+        }
+        
         function cambia(velocMas, accion){
+            activador1 = inicio1();
             if(velocMas == 1){
                 if(accion == 'suma'){
                     activador1.postMessage('suma');
@@ -48,20 +75,31 @@
                 }
             }
         }
-        
-        activador1.onmessage = function(event1){
-            valor1 = event1.data;
-            document.getElementById('valor1').innerHTML = valor1;
-        }
-        activador2.onmessage = function(event2){
-            valor2 = event2.data;
-            document.getElementById('valor2').innerHTML = valor2;
+
+        function reinicia(workReset){
+                if(workReset == 1){ 
+                    activador1.terminate();
+                }else{
+                    activador2.terminate();
+                }
+                inicio();
         }
 
-        function para(){
+        function para(workPara){
+            if(workPara == 1){
+                activador1.terminate();
+
+            }else{
+                activador2.terminate();
+            }
+        }
+
+        function paraTodo(){
             activador1.terminate();
             activador2.terminate();
         }
+
+
     </script>
 </head>
 <body>
@@ -73,6 +111,10 @@
                 <button onclick="cambia(1, 'resta')">-</button>
             </div>
             <p id="valor1"></p>
+            <div class="botones">
+                <button onclick="reinicia(1)">Reinicia</button>
+                <button onclick="para(1)">Para</button>
+            </div>
         </div>
         <div class="conts">
             <p>Velocidad 2</p>
@@ -81,8 +123,12 @@
                 <button onclick="cambia(2, 'resta')">-</button>
             </div>
             <p id="valor2"></p>
+            <div class="botones">
+                <button onclick="reinicia(2)">Reinicia</button>
+                <button onclick="para(2)">Para</button>
+            </div>
         </div>
     </div>
-    <button id="para" onclick="para()">Parar</button>
+    <button id="para" onclick="paraTodo()">Parar Todo</button>
 </body> 
 </html>
