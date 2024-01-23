@@ -34,12 +34,12 @@
         var activador2;
 
         function inicio1(){
-            
+            if(activador1 == undefined);
             return activador1 = new Worker("velocidad1.js");
         }
 
         function inicio2(){
-            
+            if(activador2 == undefined)
             return activador2 = new Worker("velocidad2.js");
         }
 
@@ -77,10 +77,14 @@
         }
 
         function reinicia(workReset){
-                if(workReset == 1){ 
+                if(workReset == 1){
+                    if(activador1 == undefined) 
                     activador1.terminate();
+                    activador1 == undefined;
                 }else{
+                    if(activador2 == undefined)
                     activador2.terminate();
+                    activador2 == undefined;
                 }
                 inicio();
         }
@@ -88,15 +92,18 @@
         function para(workPara){
             if(workPara == 1){
                 activador1.terminate();
-
+                activador1 == undefined;
             }else{
                 activador2.terminate();
+                activador2 == undefined;
             }
         }
 
         function paraTodo(){
             activador1.terminate();
+            activador1 == undefined;
             activador2.terminate();
+            activador2 == undefined;
         }
 
 
