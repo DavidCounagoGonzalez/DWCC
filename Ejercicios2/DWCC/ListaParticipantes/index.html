@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participantes</title>
+    <script>
+        window.addEventListener("load", inicio);
+
+        function inicio(){
+            actualizar();
+            setInterval(actualizar, 5000);
+        }
+
+        function actualizar(){
+            cadena = "";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200){
+                    const personas = JSON.parse(this.response);
+                    var cadena;
+                    personas.forEach(persona => {
+                        cadena += persona['nombre'] + " -> " + persona['puntuacion'] + "<br/>";
+                        console.log(cadena);
+                    });
+                    document.getElementById("lista").innerHTML = cadena;
+                }
+            };
+            xmlhttp.open("GET", "http://localhost:8080/PHP/DWCC/ListaParticipantes/getParticipantes.php", true);
+            xmlhttp.send();
+        }
+        
+    </script>
+</head>
+<body>
+    <h2>Participantes: </h2>
+    <p id="lista"></p>
+</body>
+</html>
