@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+</head>
+<body>
+    <script>
+    var xmlhttp = new XMLHttpRequest();
+        var url = "noticias.json";
+        window.addEventListener("load", inicio);
+
+        function inicio(){
+            actualizar();
+            setInterval(actualizar, 5000);
+        }
+
+        function actualizar() {
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var listaNoticias = JSON.parse(this.responseText);
+                    getNoticias(listaNoticias);
+                }
+            };
+
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+        function getNoticias(arr) {
+            var muestra = "";
+            for (i = 0; i < arr.length; i++) {
+                muestra += '<h2>' + arr[i].titular + '</h2><img src="' + arr[i].foto + '" alt="" /><p id="pieFoto">' + arr[i].pieFoto + '</p><p id="cuerpo">' + arr[i].cuerpo + '</p>';
+            }
+            document.getElementById("noticias").innerHTML = muestra;
+        }
+    </script>
+    <div id="noticias"></div>
+</body>
+</html>

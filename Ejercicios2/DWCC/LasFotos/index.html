@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos</title>
+</head>
+
+<body>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        var url = "fotos.json";
+        window.addEventListener("load", inicio);
+
+        function inicio(){
+            actualizar();
+            setInterval(actualizar, 5000);
+        }
+
+        function actualizar() {
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var listaFotos = JSON.parse(this.responseText);
+                    getFotos(listaFotos);
+                }
+            };
+
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+        function getFotos(arr) {
+            var muestra = "";
+            for (i = 0; i < arr.length; i++) {
+                muestra += '<img src="' + arr[i].foto + '" /><p>' + arr[i].pieFoto + '</p>'
+            }
+            document.getElementById("fotos").innerHTML = muestra;
+        }
+    </script>
+    <div id="fotos"></div>
+</body>
+
+</html>

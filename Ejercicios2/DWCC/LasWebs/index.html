@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participantes</title>
+</head>
+<body>
+    <div id="lasWebs"></div>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        var url = "webs.json";
+        xmlhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+                var listaWebs = JSON.parse(this.responseText);
+                getWebs(listaWebs);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        function getWebs(arr){
+            var out = "";
+            var i;
+            for(i = 0; i<arr.length; i++){
+                out += '<a href="' + arr[i].url + '">' + arr[i].display + '</a><br>';
+            }
+            document.getElementById("lasWebs").innerHTML = out;
+        }
+    </script>
+</body>
+</html>

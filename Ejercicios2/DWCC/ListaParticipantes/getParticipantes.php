@@ -13,7 +13,6 @@ foreach($lista as $nombre){
         "puntuacion" => rand(0, 10)
     );
 }
-
 echo $jsonPersonas = json_encode($personas) ;
 
 fclose($fichero);

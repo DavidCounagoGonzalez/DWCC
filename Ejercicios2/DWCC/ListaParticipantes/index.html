@@ -14,11 +14,12 @@
         }
 
         function actualizar(){
-            cadena = "";
+        cadena = "";
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
                 if(this.readyState == 4 && this.status == 200){
                     const personas = JSON.parse(this.response);
+                    console.log(personas);
                     var cadena;
                     personas.forEach(persona => {
                         cadena += persona['nombre'] + " -> " + persona['puntuacion'] + "<br/>";

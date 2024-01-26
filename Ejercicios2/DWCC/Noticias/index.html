@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Noticias</title>
+</head>
+<body>
+    <script>
+
+        function añadirNoticia(){
+            // var noticia = {
+            //     "titular": document.getElementById('titular').value,
+            //     "foto": document.getElementById('foto').value,
+            //     "pieFoto": document.getElementById('pieFoto').value,
+            //     "cuerpo": document.getElementById('cuerpo').value
+            // };
+
+            const data = JSON.parse("noticias.json");
+
+            data.noticas.push({
+                "titular": document.getElementById('titular').value,
+                "foto": document.getElementById('foto').value,
+                "pieFoto": document.getElementById('pieFoto').value,
+                "cuerpo": document.getElementById('cuerpo').value
+            });
+        }
+
+
+        function verNoticias(){
+            window.location.href="./noticias.html"
+        }
+    </script>
+    <form action="">
+        <label for="titular">Titular: </label>
+        <input type="text" name="titular" id="titular"><br>
+        <label for="foto">Imagen: </label>
+        <input type="text" name="foto" id="foto"><br>
+        <label for="pieFoto">Pie de foto: </label>
+        <input type="text" name="pieFoto" id="pieFoto"><br>
+        <label for="cuerpo">Cuerpo de la Noticia: </label>
+        <input type="textarea" name="cuerpo" id="cuerpo"><br>
+        <button type="button" name="añadir" onclick="añadirNoticia()">Añadir</button>
+        <button type="button" name="ver" onclick="verNoticias()">Noticias</button>
+    </form>   
+</body>
+
+</html>
