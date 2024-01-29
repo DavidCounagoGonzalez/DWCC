@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+</head>
+
+<body>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        var urlNoti = "noticias.json";
+        var urlImg = "fotos.json";
+        window.addEventListener("load", inicio);
+
+        function fichero(url) {
+            this.url = url;
+
+            this.actualizar = function () {
+                xmlhttp.onreadystatechange = probando(url);
+            }
+        }
+
+        function probando(url) {
+            console.log(xmlhttp)
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var lista = JSON.parse(xmlhttp.responseText);
+                console.log("hola");
+                if (url.includes("noticias")) {
+                    getNoticias(lista);
+                } else {
+                    getImagenes(lista);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+        var noticias = new fichero("noticias.json");
+        var imagenes = new fichero("fotos.json");
+
+        function inicio() {
+            setInterval(noticias.actualizar(), 5000);
+            setInterval(imagenes.actualizar(), 5000);
+        }
+
+        function getNoticias(arr) {
+            var muestra = "";
+            for (i = 0; i < arr.length; i++) {
+                muestra += '<h2>' + arr[i].titular + '</h2><p id="cuerpo">' + arr[i].cuerpo + '</p>';
+            }
+            document.getElementById("noticias").innerHTML = muestra;
+        }
+
+        function getImagenes(arr) {
+            var muestra = "";
+            for (i = 0; i < arr.length; i++) {
+                muestra += '<img src="' + arr[i].foto + '" alt="" /><p id="pieFoto">' + arr[i].pieFoto + '</p>';
+            }
+            document.getElementById("imagenes").innerHTML = muestra;
+        }
+    </script>
+    <div id="noticias"></div>
+    <div id="imagenes"></div>
+</body>
+
+</html>
