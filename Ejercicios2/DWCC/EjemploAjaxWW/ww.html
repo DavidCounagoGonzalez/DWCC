@@ -1,0 +1,16 @@
+<html>
+    <body>       
+        <p id="salida"></p>
+        <script>
+            
+            w = new Worker("ww.js");
+            w.onmessage = function (e) {
+                salida = "";
+                for(i = 0; i < e.data.length; i++) {
+                    salida += e.data[i].nombre + " " + e.data[i].edad + "<br />";
+                }
+                document.getElementById("salida").innerHTML = salida;
+            }
+        </script>
+    </body>
+</html>
