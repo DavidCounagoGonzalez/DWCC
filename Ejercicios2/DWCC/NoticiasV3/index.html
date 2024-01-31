@@ -10,18 +10,20 @@
     <div id="noticias"></div>
     <div id="imagenes"></div>
     <script>
+        //Creamos los workers con sus archivos js
         workNoticias = new Worker("getNoticias.js");
         workImagenes = new Worker("getImagenes.js");
 
         const divNoticias = document.getElementById('noticias');
         const divImagenes = document.getElementById('imagenes');
-
+        
+        //Llamamos al método onmessge que lanzará su función cuando reciba un post
         workNoticias.onmessage = function(e){
             while(divNoticias.firstChild){
                 divNoticias.removeChild(divNoticias.lastChild);
             }
-            console.log(divNoticias.value);
             resultado = "";
+            //recorremos los datos recibidos en el post y lo guardamos en la var resultado para printearla en una etiqueta HTML.
             for(i = 0; i < e.data.length; i++){
                 resultado += "<h1>" + e.data[i].titular + "</h1><p>" + e.data[i].cuerpo + "</p><br/>";
             }
