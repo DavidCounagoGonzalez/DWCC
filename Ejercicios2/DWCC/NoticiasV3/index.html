@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX con WebWorkers</title>
+</head>
+<body>
+    <div id="noticias"></div>
+    <div id="imagenes"></div>
+    <script>
+        workNoticias = new Worker("getNoticias.js");
+        workImagenes = new Worker("getImagenes.js");
+
+        const divNoticias = document.getElementById('noticias');
+        const divImagenes = document.getElementById('imagenes');
+
+        workNoticias.onmessage = function(e){
+            while(divNoticias.firstChild){
+                divNoticias.removeChild(divNoticias.lastChild);
+            }
+            console.log(divNoticias.value);
+            resultado = "";
+            for(i = 0; i < e.data.length; i++){
+                resultado += "<h1>" + e.data[i].titular + "</h1><p>" + e.data[i].cuerpo + "</p><br/>";
+            }
+            divNoticias.innerHTML = resultado;
+        }
+
+        workImagenes.onmessage = function(e){
+            while(divImagenes.firstChild){
+                divImagenes.removeChild(divImagenes.lastChild);
+            }
+            resultado = "";
+            for(i = 0; i < e.data.length; i++){
+                resultado += "<img src='" + e.data[i].foto + "'></img><p>" + e.data[i].pieFoto + "</p><br/>";
+            }
+            divImagenes.innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>
