@@ -27,9 +27,11 @@
             for(i = 0; i < e.data.length; i++){
                 resultado += "<h1>" + e.data[i].titular + "</h1><p>" + e.data[i].cuerpo + "</p><br/>";
             }
+            divNoticias.innerHTML = "";
             divNoticias.innerHTML = resultado;
         }
 
+        //Repetimos lo mismo para el worker de imagenes
         workImagenes.onmessage = function(e){
             while(divImagenes.firstChild){
                 divImagenes.removeChild(divImagenes.lastChild);
@@ -38,6 +40,7 @@
             for(i = 0; i < e.data.length; i++){
                 resultado += "<img src='" + e.data[i].foto + "'></img><p>" + e.data[i].pieFoto + "</p><br/>";
             }
+            divImagenes.innerHTML = "";
             divImagenes.innerHTML = resultado;
         }
     </script>

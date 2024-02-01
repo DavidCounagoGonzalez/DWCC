@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concesionario Ajax XML</title>
+</head>
+<body>
+    <p id="listado"></p>
+    <script>
+        // creamos el objeto para el request
+        var xhttp = new XMLHttpRequest();
+        //Cuando reciba una respuesta del request y esta sea válida lanza la función
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                recuperaDatos(this);
+            }
+        };
+        xhttp.open("GET", "concesionario.xml", true);
+        xhttp.send();
+
+        function recuperaDatos(xml){
+            var datos = "";
+            var xmlDatos = xml.responseXML; //leemos y recogemos los datos del archivo XML
+            array = xmlDatos.getElementsByTagName("marca"); //Guardamos en un array los 
+            for(i = 0; i<array.length; i++){
+                datos += "marca: " + array[i].childNodes[0].nodeValue + "<br>"; //recogemos del array su primer nodo hijo y printeamos su valor
+            }
+            document.getElementById("listado").innerHTML = datos;
+        }
+    </script>
+</body>
+</html>
