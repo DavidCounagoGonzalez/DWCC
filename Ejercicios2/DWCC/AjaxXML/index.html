@@ -23,9 +23,17 @@
         function recuperaDatos(xml){
             var datos = "";
             var xmlDatos = xml.responseXML; //leemos y recogemos los datos del archivo XML
-            array = xmlDatos.getElementsByTagName("marca"); //Guardamos en un array los 
+            array = xmlDatos.getElementsByTagName("concesionario"); //Guardamos en un array los datos obtenidos de una tag.
+            array2 = xmlDatos.getElementsByTagName("coche");//Podemos crear arrays directos a una etiqueta para acceder a ese nivel directamente
+            console.log(array2);
             for(i = 0; i<array.length; i++){
-                datos += "marca: " + array[i].childNodes[0].nodeValue + "<br>"; //recogemos del array su primer nodo hijo y printeamos su valor
+                datos += "Número: " + array[i].getAttribute('numero') + "<br>";
+                for(j = 0; j<array[i].children.length; j++){
+                   datos += "Combustible: " + array[i].children[j].getAttribute("combustible") + "<br> datos: <br>";
+                    for(z = 0; z < array2[j].children.length; z++){
+                        datos += z +"->" + array[i].children[j].children[z].childNodes[0].nodeValue + "<br>"; //recogemos del array su primer nodo hijo y printeamos su valor
+                    }
+                }
             }
             document.getElementById("listado").innerHTML = datos;
         }
