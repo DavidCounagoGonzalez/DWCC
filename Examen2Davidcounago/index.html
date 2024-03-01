@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen JS 2ºtrimestre</title>
+</head>
+<body>
+    <input type="radio" name="radio" id="galicia" onchange="getProvincias('galicia.xml')">
+    <label for="galicia">Galicia</label>
+    <br>
+    <input type="radio" name="radio" id="aragon" onchange="getProvincias('aragon.xml')">
+    <label for="aragon">Aragon</label>
+    <input type="checkbox" name="ordenar" id="ordenar">
+    <label for="ordenar">Ordenar</label>
+    <br>
+    <label for="provincias">Provincias</label>
+    <select name="provincias" id="provincias" onchange="getHabitantes()">
+        <option name="opcion" value="0">-----</option>
+    </select>
+    <br>
+    <textarea name="txtArea" id="habitantes" cols="15" rows="5"></textarea>
+    <br>
+    <p id="reloj"></p>
+    <script>
+        
+        var select = document.getElementById('provincias');
+        var ordena = document.getElementById('ordenar');
+
+        function getProvincias(fichero){ // función que se lanza con onchange en elos radioButtons pasando como parámetro el fichero correspondiente.
+            var request = new XMLHttpRequest(); // creamos la petición http.
+
+            request.open("GET", fichero, true); //Indicamos el método de respuesta y el fihcero
+            request.onreadystatechange = function(){ //Cuando exista se conecte la app con el fichero...
+                if(this.readyState === 4 && this.status === 200){ //comprobamos si la conexión se ha realizado correctamente
+                    select.innerHTML = "<option name='opcion' value=''>-----</option>"; // Le damos al select un option vació para actualizarlo de 0 en cada cambio.
+                    var xmlFile= this.responseXML; //Leemos el archivo xml en una variable 
+                    var provincias = xmlFile.getElementsByTagName('provincia'); //Recogemos los elementos provincia del archivo
+                    var listaOrdenar = [];
+                    for (let i = 0; i < provincias.length; i++) { //Recorremos los elementos provincia
+                        listaOrdenar.push(provincias[i].innerHTML); //Los guardamos en el array
+                            
+                    }
+                    if(ordena.checked){  
+                        listaOrdenar.sort(); //Si está checked ordenamos el array
+                    }
+                    for (let i = 0; i < provincias.length; i++) { // Añadimos al select por el final las options con el valor y muestra de las provincias en el array
+                        select.insertAdjacentHTML('beforeend', "<option name='opcion' value="+ listaOrdenar[i] +">"+ listaOrdenar[i] +"</option>"); 
+                    }
+                
+                }
+            }
+            request.send();
+        }
+
+
+        function getHabitantes(){ // Se lanza con onchange del select
+            var textHab = document.getElementById('habitantes'); 
+            var requestProv =  new XMLHttpRequest();
+
+            requestProv.open("GET", "provincias.json", true);
+            requestProv.onreadystatechange = function(){
+                if(this.readyState === 4 && this.status === 200){
+                    var habitantes = JSON.parse(this.responseText); // Parseamos el json y lo guardamos en una variable
+                    if(habitantes[0][select.value] === undefined){ // cuando se selecciones el elemento vació de slect no se printea nada
+                        textHab.value = "";
+                    }else{
+                        textHab.value=habitantes[0][select.value]; // Printeamos en el textarea los habitantes de la provincia indicada accediendo a los datos del json
+                                                                   // Utlizando como key el value indicado en el select
+                    }
+                }
+            }
+            requestProv.send();
+        }
+
+        window.addEventListener('load', reloj); //Lanzamos la función reloj en la carga de la página
+
+        function reloj(){
+            var muestra = document.getElementById('reloj');
+            var worker = new Worker('reloj.js'); //creamos el worker
+            worker.onmessage = function (event){ // Cada vez que el worker reciba un mensaje printea los datos recogidos
+                muestra.innerHTML= event.data;
+            }
+        }
+    </script>
+</body>
+</html>
